@@ -5,6 +5,7 @@ namespace Emergency\EmergencyBundle\Controller;
 
 use Emergency\EmergencyBundle\Entity\Urgence;
 use Emergency\EmergencyBundle\Entity\Expedition;
+use AppBundle\Entity\User;
 use Emergency\EmergencyBundle\Form\UrgenceType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -53,6 +54,8 @@ class DefaultController extends Controller
                 $urgence->setPlaceId($place_id);
                 $urgence->setDate(date('d/m/Y H:i:s',time()));
                 $urgence->setEtat(0);
+                $u = $entityManager->getRepository("AppBundle:User")->find($this->getUser());
+                $urgence->setUtilisateur($u);
                 if($expedition != '')
                 {
                     $exp = $entityManager->getRepository("EmergencyBundle:Expedition")->find($expedition);
@@ -107,6 +110,8 @@ class DefaultController extends Controller
                 $expedition->setType($type);
                 $expedition->setStatut($statut);
                 $expedition->setDate(date('Y-m-d',time()));
+                $u = $entityManager->getRepository("AppBundle:User")->find($this->getUser());
+                $expedition->setUtilisateur($u);
 
                 // tell Doctrine you want to (eventually) save the Product (no queries yet)
                 $entityManager->persist($expedition);

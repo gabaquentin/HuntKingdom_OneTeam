@@ -22,11 +22,10 @@ class Urgence
     private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="Utilisateur", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
+     * @ORM\JoinColumn(name="utilisateur", referencedColumnName="id")
      */
-    private $utilisateur = '112';
+    private $utilisateur;
 
     /**
      * @var string
@@ -198,27 +197,19 @@ class Urgence
     }
 
     /**
-     * Set utilisateur
-     *
-     * @param string $utilisateur
-     *
-     * @return Urgence
-     */
-    public function setUtilisateur($utilisateur)
-    {
-        $this->utilisateur = $utilisateur;
-
-        return $this;
-    }
-
-    /**
-     * Get utilisateur
-     *
-     * @return string
+     * @return mixed
      */
     public function getUtilisateur()
     {
         return $this->utilisateur;
+    }
+
+    /**
+     * @param mixed $utilisateur
+     */
+    public function setUtilisateur($utilisateur)
+    {
+        $this->utilisateur = $utilisateur;
     }
 
 

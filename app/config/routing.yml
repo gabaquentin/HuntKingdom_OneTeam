@@ -1,3 +1,7 @@
+admin_emergency:
+    resource: "@AdminEmergencyBundle/Resources/config/routing.yml"
+    prefix:   /adminEmergency
+
 emergency:
     resource: "@EmergencyBundle/Resources/config/routing.yml"
     prefix:   /emergency
