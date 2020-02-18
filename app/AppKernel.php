@@ -21,6 +21,7 @@ class AppKernel extends Kernel
             new User\UserBundle\UserBundle(),
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
             new Emergency\EmergencyBundle\EmergencyBundle(),
+            new Emergency\AdminEmergencyBundle\AdminEmergencyBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

@@ -1,0 +1,15 @@
+admin_emergency_homepage:
+    path:     /
+    defaults: { _controller: AdminEmergencyBundle:Default:index }
+admin_emergency_prevention:
+    path:     /prevention
+    defaults: { _controller: AdminEmergencyBundle:Default:prevention }
+admin_emergency_prevention_detailExp:
+    path:     /prevention_detailExp/{id}
+    defaults: { _controller: AdminEmergencyBundle:Default:prevention_detailExp }
+admin_emergency_prevention_delExp:
+    path:     /prevention_delExp/{id}
+    defaults: { _controller: AdminEmergencyBundle:Default:prevention_delExp }
+admin_emergency_traiter:
+    path:     /emergency_traiter/{id}
+    defaults: { _controller: AdminEmergencyBundle:Default:emergency_traiter }
