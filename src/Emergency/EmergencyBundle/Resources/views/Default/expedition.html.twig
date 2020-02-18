@@ -1,0 +1,294 @@
+{% extends 'base.html.twig' %}
+
+{% block emergency_expedition %}
+
+    <body>
+    <!--::header part start::-->
+
+    <!-- Header part end-->
+
+    <!-- breadcrumb part start-->
+    <section class="breadcrumb_part">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb_iner">
+                        <h2>Expedition</h2>
+                        <p>Heureux de vous savoir en expedition</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- breadcrumb part end-->
+
+    <!-- ================ contact section start ================= -->
+    <section class="contact-section section_padding">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-12">
+
+                    <h2 class="contact-title" id="h2out"> Alors données quelques informations avant de vous lancer</h2>
+                    <h2 class="contact-title" id="h2in">Expedition ajouté avec succés </h2>
+                </div>
+                <div class="col-lg-8 c-form-box">
+                    <form class="form-contact contact_form" action="{{ path('emergency_add_expedition') }}" method="post" id="contactForm"
+                          novalidate="novalidate" name="form">
+                        <div class="row">
+
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <input class="form-control" name="nom" id="nom" type="text" onfocus="this.placeholder = ''"
+                                           onblur="this.placeholder = 'Donnez un nom a votre expedition'" placeholder='Donnez un nom a votre expedition'>
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="dateDebut"><span class="contact-error">Debut de l'expedition </span></label>
+                                    <input class="form-control validDate" name="dateDebut" id="dateDebut" type="datetime-local" >
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="dateDebut">Fin de l'expedition</label>
+                                    <input class="form-control validDate" name="dateFin" id="dateFin" type="datetime-local"
+                                           >
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <input class="form-control" name="lieux" id="lieux" type="text" onfocus="this.placeholder = ''"
+                                           onblur="this.placeholder = 'Ou allez vous ?'" placeholder='Ou allez vous ?'>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="form-group">
+
+                  <textarea class="form-control w-100" name="message" id="message" cols="30" rows="9"
+                            onfocus="this.placeholder = ''" onblur="this.placeholder = 'Avez vous quelques choses a nous dire a propos de votre expedition ?'"
+                            placeholder="Avez vous quelques choses a nous dire a propos de votre expedition ?"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <input class="form-control" name="type" id="type" type="text" value="chasse"
+                                           hidden >
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <input class="form-control" name="statut" id="statut" type="text" value="0"
+                                           hidden >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group mt-3">
+                            <button type="submit" class="btn_3 button-contactForm">Ajouter l'expedition</button>
+                        </div>
+                    </form>
+                    <div id="finish"> Merci pour votre confiance. Ceci nous permet de savoir si tout se passe bien pendant votre expedition et repondre a temps en cas de probleme </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="media contact-info">
+                        <span class="contact-info__icon"><i class="ti-heart"></i></span>
+                        <div class="media-body">
+                            <h3>Des secours prés de vous </h3>
+                            <p>Gardez votre calme une equipe de secouristes se met en route une fois l'urgence envoyé.</p>
+                        </div>
+                    </div>
+                    <div class="media contact-info">
+                        <span class="contact-info__icon"><i class="ti-location-pin"></i></span>
+                        <div class="media-body">
+                            <h3>Geolocalisation</h3>
+                            <p>Nous avons votre position exact surtout ne vous eloignez pas de votre appareil.</p>
+                        </div>
+                    </div>
+                    <div class="media contact-info">
+                        <span class="contact-info__icon"><i class="ti-eye"></i></span>
+                        <div class="media-body">
+                            <h3>Assistance medicale</h3>
+                            <p>Gardez votre telephone allumé une assistance medicale pour vous guider avant l'arrivé des secours.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ================ contact section end ================= -->
+    <!--::footer_part start::-->
+
+    <!--::footer_part end::-->
+    <script>
+
+        $(function() {
+            $('#finish').hide();
+            $('#h2in').hide();
+        });
+
+        // handle request submit form
+
+        $(document).ready(function(){
+
+            (function($) {
+                "use strict";
+
+
+                jQuery.validator.addMethod('answercheck', function (value, element) {
+                    return this.optional(element) || /^\bcat\b$/.test(value)
+                }, "type the correct answer -_-");
+
+                $.validator.addMethod('dateBefore', function (value, element, params) {
+                    // if end date is valid, validate it as well
+                    var end = $(params);
+                    if (!end.data('validation.running')) {
+                        $(element).data('validation.running', true);
+                        setTimeout($.proxy(
+
+                            function () {
+                                this.element(end);
+                            }, this), 0);
+                        // Ensure clearing the 'flag' happens after the validation of 'end' to prevent endless looping
+                        setTimeout(function () {
+                            $(element).data('validation.running', false);
+                        }, 0);
+                    }
+                    return this.optional(element) || this.optional(end[0]) || new Date(value) < new Date(end.val());
+
+                }, 'Doit être avant la date de fin correspondante');
+
+                $.validator.addMethod('dateAfter', function (value, element, params) {
+                    // if start date is valid, validate it as well
+                    var start = $(params);
+                    if (!start.data('validation.running')) {
+                        $(element).data('validation.running', true);
+                        setTimeout($.proxy(
+
+                            function () {
+                                this.element(start);
+                            }, this), 0);
+                        setTimeout(function () {
+                            $(element).data('validation.running', false);
+                        }, 0);
+                    }
+                    return this.optional(element) || this.optional(start[0]) || new Date(value) > new Date($(params).val());
+
+                }, 'Doit être après la date de début correspondante');
+
+                $.validator.addMethod("minDate", function (value, element) {
+                    var now = new Date();
+                    var myDate = new Date(value);
+                    return this.optional(element) || myDate > now;
+                }, 'Entrez une date qui n\'est pas encore passée'
+                );
+
+                // validate contactForm form
+                $(function() {
+                    $('#contactForm').validate({
+                        rules: {
+                            nom: {
+                                required: true,
+                                minlength: 4
+                            },
+                            message: {
+                                required: true,
+                            },
+                            lieux: {
+                                required: true,
+                                minlength: 5
+                            },
+                            dateDebut: {
+                                dateBefore: '#dateFin',
+                                minDate: '#dateDebut',
+                                required: true,
+                            },
+                            dateFin: {
+                                dateAfter: '#dateDebut',
+                                required: true,
+                            }
+                        },
+                        messages: {
+                            nom: {
+                                required: "um...ok, Vous devez remplir ce champ pour envoyer la requete.",
+                                minlength: "c'est tout? vraiment?"
+                            },
+                            lieux: {
+                                required: "um...ok, Vous devez remplir ce champ pour envoyer la requete.",
+                                minlength: "c'est tout? vraiment?"
+                            },
+                            dateDebut: {
+                                required: "um...ok, Vous devez remplir ce champ pour envoyer la requete.",
+                            },
+                            dateFin: {
+                                required: "um...ok, Vous devez remplir ce champ pour envoyer la requete.",
+                            },
+                            message: {
+                                required: "um...ok, Vous devez remplir ce champ pour envoyer la requete.",
+                            }
+                        },
+                        submitHandler: function(form) {
+                            $(form).ajaxSubmit({
+                                type:"POST",
+                                data: $(form).serialize(),
+                                url:"{{ path('emergency_add_expedition') }}",
+                                success: function() {
+                                    $('#contactForm :input').attr('disabled', 'disabled');
+                                    $('#contactForm').fadeTo("slow", 1, function () {
+                                        $(this).find(':input').attr('disabled', 'disabled');
+                                        $(this).find('label').css('cursor', 'default');
+                                        $('#success').fadeIn()
+                                        $('.modal').modal('hide');
+                                        $('#success').modal('show');
+                                    })
+                                    $('#contactForm').fadeOut('low');
+                                    $('#h2out').fadeOut('low');
+                                    $('#finish').fadeIn('low');
+                                    $('#h2in').fadeIn('low');
+                                },
+                                error: function() {
+                                    $('#contactForm').fadeTo( "slow", 1, function() {
+                                        $('#error').fadeIn()
+                                        $('.modal').modal('hide');
+                                        $('#error').modal('show');
+                                    })
+                                }
+                            })
+                        }
+                    })
+                })
+
+            })(jQuery)
+        })
+    </script>
+    <!-- google api plugin here -->
+    <!-- jquery plugins here-->
+    <script src="{{ asset('js/jquery-1.12.1.min.js') }}"></script>
+    <!-- popper js -->
+    <script src="{{ asset('js/popper.min.js') }}"></script>
+    <!-- bootstrap js -->
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <!-- magnific popup js -->
+    <script src="{{ asset('js/jquery.magnific-popup.js') }}"></script>
+    <!-- carousel js -->
+    <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.nice-select.min.js') }}"></script>
+    <!-- slick js -->
+    <script src="{{ asset('js/slick.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.counterup.min.js') }}"></script>
+    <script src="{{ asset('js/waypoints.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.ajaxchimp.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.form.js') }}"></script>
+    <script src="{{ asset('js/jquery.validate.min.js') }}"></script>
+    <script src="{{ asset('js/mail-script.js') }}"></script>
+    <!-- custom js -->
+    <script src="{{ asset('js/custom.js') }}"></script>
+    </body>
+
+{% endblock %}
+{% block js %}{% endblock %}

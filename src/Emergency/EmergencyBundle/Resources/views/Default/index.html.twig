@@ -1,0 +1,416 @@
+{% extends 'base.html.twig' %}
+
+
+{% block emergency %}
+
+<body>
+<!--::header part start::-->
+
+<!-- Header part end-->
+
+<!-- breadcrumb part start-->
+<section class="breadcrumb_part">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb_iner">
+                    <h2>Urgence</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- breadcrumb part end-->
+
+<!-- ================ contact section start ================= -->
+<section class="contact-section section_padding">
+    <div class="container">
+        <div class="d-none d-sm-block mb-5 pb-4">
+            <div id="map" style="height: 480px;"></div>
+            <script>
+                // Note: This example requires that you consent to location sharing when
+                // prompted by your browser. If you see the error "The Geolocation service
+                // failed.", it means you probably did not give permission for the browser to
+                // locate you.
+                var now = new Date();
+                var heure   = now.getHours();
+                var map, infoWindow;
+                function initMap() {
+                    if(heure >= 17 || heure <= 6)
+                    {
+                        map = new google.maps.Map(document.getElementById('map'), {
+                            center: {lat: 33.886917, lng: 9.537499},
+                            zoom: 8,
+                            styles: [
+                                {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
+                                {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
+                                {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
+                                {
+                                    featureType: 'administrative.locality',
+                                    elementType: 'labels.text.fill',
+                                    stylers: [{color: '#d59563'}]
+                                },
+                                {
+                                    featureType: 'poi',
+                                    elementType: 'labels.text.fill',
+                                    stylers: [{color: '#d59563'}]
+                                },
+                                {
+                                    featureType: 'poi.park',
+                                    elementType: 'geometry',
+                                    stylers: [{color: '#263c3f'}]
+                                },
+                                {
+                                    featureType: 'poi.park',
+                                    elementType: 'labels.text.fill',
+                                    stylers: [{color: '#6b9a76'}]
+                                },
+                                {
+                                    featureType: 'road',
+                                    elementType: 'geometry',
+                                    stylers: [{color: '#38414e'}]
+                                },
+                                {
+                                    featureType: 'road',
+                                    elementType: 'geometry.stroke',
+                                    stylers: [{color: '#212a37'}]
+                                },
+                                {
+                                    featureType: 'road',
+                                    elementType: 'labels.text.fill',
+                                    stylers: [{color: '#9ca5b3'}]
+                                },
+                                {
+                                    featureType: 'road.highway',
+                                    elementType: 'geometry',
+                                    stylers: [{color: '#746855'}]
+                                },
+                                {
+                                    featureType: 'road.highway',
+                                    elementType: 'geometry.stroke',
+                                    stylers: [{color: '#1f2835'}]
+                                },
+                                {
+                                    featureType: 'road.highway',
+                                    elementType: 'labels.text.fill',
+                                    stylers: [{color: '#f3d19c'}]
+                                },
+                                {
+                                    featureType: 'transit',
+                                    elementType: 'geometry',
+                                    stylers: [{color: '#2f3948'}]
+                                },
+                                {
+                                    featureType: 'transit.station',
+                                    elementType: 'labels.text.fill',
+                                    stylers: [{color: '#d59563'}]
+                                },
+                                {
+                                    featureType: 'water',
+                                    elementType: 'geometry',
+                                    stylers: [{color: '#17263c'}]
+                                },
+                                {
+                                    featureType: 'water',
+                                    elementType: 'labels.text.fill',
+                                    stylers: [{color: '#515c6d'}]
+                                },
+                                {
+                                    featureType: 'water',
+                                    elementType: 'labels.text.stroke',
+                                    stylers: [{color: '#17263c'}]
+                                }
+                            ]
+                        });
+                    }
+                    else
+                    {
+                        map = new google.maps.Map(document.getElementById('map'), {
+                            center: {lat: 33.886917, lng: 9.537499},
+                            zoom: 8
+                        });
+                    }
+
+                    infoWindow = new google.maps.InfoWindow;
+
+                    // Try HTML5 geolocation.
+                    if (navigator.geolocation) {
+                        navigator.geolocation.getCurrentPosition(function(position) {
+                            var pos = {
+                                lat: position.coords.latitude,
+                                lng: position.coords.longitude
+                            };
+                            document.form.lat.value=pos.lat;
+                            document.form.lng.value=pos.lng;
+
+                            // geocoding api get elements compound_code
+
+                            {% set key = 'AIzaSyD2Ws0KYSjxNXXgRh8jRBGZgrXqgNHzWbI' %}
+                            var requestURL = 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+ pos.lat +','+ pos.lng +'&key={{ key }}';
+                            var request = new XMLHttpRequest();
+                            request.open('GET', requestURL);
+                            request.responseType = 'json';
+                            request.send();
+                            request.onload = function() {
+                                var address = request.response;
+                                populateHeader(address);
+                                // showHeroes(address);
+                            };
+
+                            function populateHeader(jsonObj) {
+                                var place_id = jsonObj.results[3].place_id;
+                                document.form.placeId.value = place_id ;
+                                document.form.add.value=jsonObj['plus_code'].compound_code;
+                            }
+
+                            infoWindow.setPosition(pos);
+                            infoWindow.setContent('Votre position');
+                            infoWindow.open(map);
+                            map.setCenter(pos);
+                        }, function() {
+                            handleLocationError(true, infoWindow, map.getCenter());
+                        });
+                    } else {
+                        // Browser doesn't support Geolocation
+                        handleLocationError(false, infoWindow, map.getCenter());
+                    }
+                }
+
+                function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+                    infoWindow.setPosition(pos);
+                    infoWindow.setContent(browserHasGeolocation ?
+                        'Error: The Geolocation service failed.' :
+                        'Error: Your browser doesn\'t support geolocation.');
+                    infoWindow.open(map);
+                }
+            </script>
+
+            <script async defer
+                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2Ws0KYSjxNXXgRh8jRBGZgrXqgNHzWbI&callback=initMap">
+            </script>
+
+        </div>
+
+
+        <div class="row">
+            <div class="col-12">
+                <h2 class="contact-title" id="h2out">Quel est votre situation ?</h2>
+                <h2 class="contact-title" id="h2in">Requéte envoyé avec succés</h2>
+            </div>
+            <div class="col-lg-8">
+                <form class="form-contact contact_form" action="{{ path('emergency_add') }}" method="post" id="contactForm"
+                      novalidate="novalidate" name="form">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+
+                  <textarea class="form-control w-100" name="message" id="message" cols="30" rows="9"
+                            onfocus="this.placeholder = ''" onblur="this.placeholder = 'Veuillez nous donner une description exacte de votre urgence. Un numero de telephone valide pres de vous si le votre est pas joignable ou le numero d\'un proche a contacter si besoin'"
+                            placeholder="Veuillez nous donner une description exacte de votre urgence. Un numero de telephone valide pres de vous si le votre est pas joignable ou le numero d'un proche a contacter si besoin"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <div class="switch-wrap d-flex justify-content-between">
+                                    <p>Vous n'etiez pas dans une expedition ?</p>
+                                    <div class="confirm-checkbox">
+                                        <input type="checkbox" id="confirm-checkbox" onclick="verifCheck()">
+                                        <label for="confirm-checkbox"></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <input class="form-control" name="acc" id="acc" type="text" onfocus="this.placeholder = ''"
+                                       onblur="this.placeholder = 'Etes vous seul ou accompagné?'" placeholder='Etes vous seul ou accompagné?'>
+                            </div>
+                        </div>
+                        <div class="col-12 expedition">
+                            <div class="form-group">
+                                <label for="expedition">Selectionner le nom de votre expedition</label>
+                                <select class="form-control selectpicker" name="expedition" id="expedition" data-size="3" data-live-search="true">
+                                    {% for e in expedition %}
+                                    <option data-tokens="{{e.nom}}" value="{{ e.id }}">{{e.nom}}</option>
+                                    {% endfor %}
+                                </select>
+
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <input class="form-control" name="lat" id="lat" type="text"
+                                       hidden >
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <input class="form-control" name="lng" id="lng" type="text"
+                                       hidden >
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <input class="form-control" name="add" id="add" type="text"
+                                       hidden >
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <input class="form-control" name="placeId" id="placeId" type="text"
+                                       hidden >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group mt-3">
+                        <button type="submit" class="btn_3 button-contactForm">Send message</button>
+                    </div>
+                </form>
+                <div id="finish">Bien gardez votre calme une équipe est déja en route, Nous vous contacterons le plus rapidement possible.. Merci de nous faire confiance </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="media contact-info">
+                    <span class="contact-info__icon"><i class="ti-heart"></i></span>
+                    <div class="media-body">
+                        <h3><p id="demo"></p></h3>
+                        <p>Gardez votre calme une equipe de secouristes se met en route une fois l'urgence envoyé.</p>
+                    </div>
+                </div>
+                <div class="media contact-info">
+                    <span class="contact-info__icon"><i class="ti-location-pin"></i></span>
+                    <div class="media-body">
+                        <h3>Geolocalisation</h3>
+                        <p>Nous avons votre position exact surtout ne vous eloignez pas de votre appareil.</p>
+                    </div>
+                </div>
+                <div class="media contact-info">
+                    <span class="contact-info__icon"><i class="ti-eye"></i></span>
+                    <div class="media-body">
+                        <h3>Assistance medicale</h3>
+                        <p>Gardez votre telephone allumé une assistance medicale pour vous guider avant l'arrivé des secours.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ================ contact section end ================= -->
+<!--::footer_part start::-->
+
+<!--::footer_part end::-->
+<script>
+    function myFunction() {
+        var x = document.getElementById("expedition").value;
+        x+='nothing';
+        document.getElementById("demo").innerHTML = "You selected: " + x;
+    }
+
+    $(function() {
+        $('#finish').hide();
+        $('#h2in').hide();
+        $('#acc').hide();
+    });
+
+    function verifCheck() {
+        var x = document.getElementById("confirm-checkbox").checked;
+        if(x == true)
+        {
+            $('#acc').show();
+            $('.expedition').hide();
+        }
+        else
+        {
+            $('#acc').hide();
+            $('.expedition').show();
+        }
+    }
+    // handle request submit form
+
+    $(document).ready(function(){
+
+        (function($) {
+            "use strict";
+
+
+            jQuery.validator.addMethod('answercheck', function (value, element) {
+                return this.optional(element) || /^\bcat\b$/.test(value)
+            }, "type the correct answer -_-");
+
+            // validate contactForm form
+            $(function() {
+                $('#contactForm').validate({
+                    rules: {
+                        message: {
+                            required: true,
+                            minlength: 20
+                        }
+                    },
+                    messages: {
+                        message: {
+                            required: "um...ok, Vous devez remplir ce champ pour envoyer la requete.",
+                            minlength: "c'est tout? vraiment?"
+                        },
+                    },
+                    submitHandler: function(form) {
+                        $(form).ajaxSubmit({
+                            type:"POST",
+                            data: $(form).serialize(),
+                            url:"{{ path('emergency_add') }}",
+                            success: function() {
+                                $('#contactForm :input').attr('disabled', 'disabled');
+                                $('#contactForm').fadeTo( "slow", 1, function() {
+                                    $(this).find(':input').attr('disabled', 'disabled');
+                                    $(this).find('label').css('cursor','default');
+                                    $('#success').fadeIn()
+                                    $('.modal').modal('hide');
+                                    $('#success').modal('show');
+                                })
+                                $('#contactForm').fadeOut('low');
+                                $('#h2out').fadeOut('low');
+                                $('#finish').fadeIn('low');
+                                $('#h2in').fadeIn('low');
+                            },
+                            error: function() {
+                                $('#contactForm').fadeTo( "slow", 1, function() {
+                                    $('#error').fadeIn()
+                                    $('.modal').modal('hide');
+                                    $('#error').modal('show');
+                                })
+                            }
+                        })
+                    }
+                })
+            })
+
+        })(jQuery)
+    })
+</script>
+<!-- google api plugin here -->
+<!-- jquery plugins here-->
+<script src="{{ asset('js/jquery-1.12.1.min.js') }}"></script>
+<!-- popper js -->
+<script src="{{ asset('js/popper.min.js') }}"></script>
+<!-- bootstrap js -->
+<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+<!-- magnific popup js -->
+<script src="{{ asset('js/jquery.magnific-popup.js') }}"></script>
+<!-- carousel js -->
+<script src="{{ asset('js/owl.carousel.min.js') }}"></script>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
+<script src="{{ asset('js/jquery.nice-select.min.js') }}"></script>
+<!-- slick js -->
+<script src="{{ asset('js/slick.min.js') }}"></script>
+<script src="{{ asset('js/jquery.counterup.min.js') }}"></script>
+<script src="{{ asset('js/waypoints.min.js') }}"></script>
+<script src="{{ asset('js/jquery.ajaxchimp.min.js') }}"></script>
+<script src="{{ asset('js/jquery.form.js') }}"></script>
+<script src="{{ asset('js/jquery.validate.min.js') }}"></script>
+<script src="{{ asset('js/mail-script.js') }}"></script>
+<script src="{{ asset('js/custom.js') }}"></script>
+<!-- custom js -->
+</body>
+
+{% endblock %}
+{% block js %}{% endblock %}
