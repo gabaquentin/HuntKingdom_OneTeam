@@ -126,12 +126,6 @@ class Expedition
     private $type;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
-     * @ORM\JoinColumn(name="utilisateur", referencedColumnName="id")
-     */
-    private $utilisateur;
-
-    /**
      * @return mixed
      */
     public function getUtilisateur()
@@ -146,6 +140,14 @@ class Expedition
     {
         $this->utilisateur = $utilisateur;
     }
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
+     * @ORM\JoinColumn(name="utilisateur", referencedColumnName="id")
+     */
+    private $utilisateur;
+
+
 
     /**
      * Get id

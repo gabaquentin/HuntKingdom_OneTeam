@@ -3,7 +3,6 @@
 namespace Emergency\EmergencyBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Urgence
  *
@@ -22,56 +21,11 @@ class Urgence
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
-     * @ORM\JoinColumn(name="utilisateur", referencedColumnName="id")
+     * @var string
+     *
+     * @ORM\Column(name="utilisateur", type="string", length=255)
      */
     private $utilisateur;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="latitude", type="string", length=255)
-     */
-    private $latitude;
-
-    /**
-     * @return string
-     */
-    public function getLatitude()
-    {
-        return $this->latitude;
-    }
-
-    /**
-     * @param string $latitude
-     */
-    public function setLatitude($latitude)
-    {
-        $this->latitude = $latitude;
-    }
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="longitude", type="string", length=255)
-     */
-    private $longitude;
-
-    /**
-     * @return string
-     */
-    public function getLongitude()
-    {
-        return $this->longitude;
-    }
-
-    /**
-     * @param string $longitude
-     */
-    public function setLongitude($longitude)
-    {
-        $this->longitude = $longitude;
-    }
 
     /**
      * @var string
@@ -79,29 +33,6 @@ class Urgence
      * @ORM\Column(name="adresse", type="string", length=255)
      */
     private $adresse;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="place_id", type="string", length=255)
-     */
-    private $place_id;
-
-    /**
-     * @return string
-     */
-    public function getPlaceId()
-    {
-        return $this->place_id;
-    }
-
-    /**
-     * @param string $place_id
-     */
-    public function setPlaceId($place_id)
-    {
-        $this->place_id = $place_id;
-    }
 
     /**
      * @var string
@@ -118,25 +49,54 @@ class Urgence
     private $plus;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Expedition")
-     * @ORM\JoinColumn(name="expedition", referencedColumnName="id")
+     * @var string
+     *
+     * @ORM\Column(name="latitude", type="string", length=255)
      */
-    private $expedition;
+    private $latitude;
 
     /**
-     * @return mixed
+     * @var string
+     *
+     * @ORM\Column(name="longitude", type="string", length=255)
      */
-    public function getExpedition()
+    private $longitude;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="place_id", type="string")
+     */
+    private $place_id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="date", type="string")
+     */
+    private $date;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="etat", type="string")
+     */
+    private $etat;
+
+    /**
+     * @return string
+     */
+    public function getEtat()
     {
-        return $this->expedition;
+        return $this->etat;
     }
 
     /**
-     * @param mixed $expedition
+     * @param string $etat
      */
-    public function setExpedition($expedition)
+    public function setEtat($etat)
     {
-        $this->expedition = $expedition;
+        $this->etat = $etat;
     }
 
     /**
@@ -156,34 +116,26 @@ class Urgence
     }
 
     /**
-     * @return string
+     * @return mixed
      */
-    public function getEtat()
+    public function getExpedition()
     {
-        return $this->etat;
+        return $this->expedition;
     }
 
     /**
-     * @param string $etat
+     * @param mixed $expedition
      */
-    public function setEtat($etat)
+    public function setExpedition($expedition)
     {
-        $this->etat = $etat;
+        $this->expedition = $expedition;
     }
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="date", type="string")
+     * @ORM\ManyToOne(targetEntity="Expedition")
+     * @ORM\JoinColumn(name="expedition", referencedColumnName="id")
      */
-    private $date;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="etat", type="string")
-     */
-    private $etat;
+    private $expedition;
 
 
     /**
@@ -197,21 +149,28 @@ class Urgence
     }
 
     /**
-     * @return mixed
+     * Set utilisateur
+     *
+     * @param string $utilisateur
+     *
+     * @return Urgence
+     */
+    public function setUtilisateur($utilisateur)
+    {
+        $this->utilisateur = $utilisateur;
+
+        return $this;
+    }
+
+    /**
+     * Get utilisateur
+     *
+     * @return string
      */
     public function getUtilisateur()
     {
         return $this->utilisateur;
     }
-
-    /**
-     * @param mixed $utilisateur
-     */
-    public function setUtilisateur($utilisateur)
-    {
-        $this->utilisateur = $utilisateur;
-    }
-
 
     /**
      * Set adresse
@@ -283,6 +242,78 @@ class Urgence
     public function getPlus()
     {
         return $this->plus;
+    }
+
+    /**
+     * Set latitude
+     *
+     * @param string $latitude
+     *
+     * @return Urgence
+     */
+    public function setLatitude($latitude)
+    {
+        $this->latitude = $latitude;
+
+        return $this;
+    }
+
+    /**
+     * Get latitude
+     *
+     * @return string
+     */
+    public function getLatitude()
+    {
+        return $this->latitude;
+    }
+
+    /**
+     * Set longitude
+     *
+     * @param string $longitude
+     *
+     * @return Urgence
+     */
+    public function setLongitude($longitude)
+    {
+        $this->longitude = $longitude;
+
+        return $this;
+    }
+
+    /**
+     * Get longitude
+     *
+     * @return string
+     */
+    public function getLongitude()
+    {
+        return $this->longitude;
+    }
+
+    /**
+     * Set place_id
+     *
+     * @param integer $place_id
+     *
+     * @return string
+     */
+    public function setPlace_id($place_id)
+    {
+        $this->place_id = $place_id;
+
+        return $this;
+    }
+
+    /**
+     * Get place_id
+     *
+     * @return string
+     */
+    public function getPlace_id()
+    {
+        return $this->place_id;
     }
 }
 
