@@ -51,7 +51,7 @@ class DefaultController extends Controller
                 $urgence->setLatitude($lat);
                 $urgence->setLongitude($lng);
                 $urgence->setAdresse($add);
-                $urgence->setPlaceId($place_id);
+                $urgence->setPlace_id($place_id);
                 $urgence->setDate(date('d/m/Y H:i:s',time()));
                 $urgence->setEtat(0);
                 $u = $entityManager->getRepository("AppBundle:User")->find($this->getUser());
@@ -67,6 +67,17 @@ class DefaultController extends Controller
 
                 // actually executes the queries (i.e. the INSERT query)
                 $entityManager->flush();
+
+                $manager = $this->get('mgilet.notification');
+                $notif = $manager->createNotification('Urgence');
+                $notif->setMessage('Nouvelle urgence');
+                $notif->setLink('http://symfony.com/');
+                // or the one-line method :
+                // $manager->createNotification('Notification subject','Some random text','http://google.fr');
+
+                // you can add a notification to a list of entities
+                // the third parameter ``$flush`` allows you to directly flush the entities
+                $manager->addNotification(array($this->getUser()), $notif, true);
             }
 
         }
@@ -126,4 +137,5 @@ class DefaultController extends Controller
 
 
     }
+
 }
