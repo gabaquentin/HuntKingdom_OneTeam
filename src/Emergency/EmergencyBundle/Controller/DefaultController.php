@@ -69,7 +69,7 @@ class DefaultController extends Controller
                 $entityManager->flush();
 
                 $manager = $this->get('mgilet.notification');
-                $notif = $manager->createNotification('Urgence');
+                $notif = $manager->createNotification('urgence');
                 $notif->setMessage('Nouvelle urgence');
                 $notif->setLink('http://symfony.com/');
                 // or the one-line method :
