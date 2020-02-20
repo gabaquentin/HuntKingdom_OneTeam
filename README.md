@@ -96,7 +96,7 @@ composer install
 
 with :
 
-.. code-block:: php
+
 
 {% trans_default_domain 'FOSUserBundle' %}
 
@@ -162,6 +162,8 @@ with :
 # then change file vendor/friendsofsymfony/user-bundle/Resources/views/Registration/register_content.html.twig
 
 with
+
+<!--
 
 {% trans_default_domain 'FOSUserBundle' %}
 
@@ -275,6 +277,8 @@ with
         </div>
     </div>
 </section>
+
+-->
 
 # continue with file vendor/friendsofsymfony/user-bundle/Resources/views/Registration/confirmed.html.twig
 
