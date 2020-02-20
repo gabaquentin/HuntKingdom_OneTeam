@@ -1,3 +1,0 @@
-admin_boutique_homepage:
-    path:     /
-    defaults: { _controller: AdminBoutiqueBundle:Default:index }

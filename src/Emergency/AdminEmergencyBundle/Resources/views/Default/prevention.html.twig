@@ -64,6 +64,7 @@
                                 </thead>
                                 <tbody>
                                 {% for e in expedition %}
+                                    {% if e.statut != 3 %}
                                 <tr>
                                     <td>#</td>
                                     <td>
@@ -158,11 +159,12 @@
                                         {% endif %}
                                         {% if (e.statut == 2) %}
                                             <a href="{{ path('admin_emergency_prevention_detailExp',{'id':e.id}) }}" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> voir </a>
-                                            <a href="{{ path('admin_emergency_prevention_delExp',{'id':e.id}) }}" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> supprimer </a>
+                                            <a href="{{ path('admin_emergency_prevention_archExp',{'id':e.id}) }}" class="btn btn-dark btn-xs"><i class="fa fa-archive"></i> archiver </a>
                                         {% endif %}
 
                                     </td>
                                 </tr>
+                                    {% endif %}
                                 {% endfor %}
 
                                 </tbody>

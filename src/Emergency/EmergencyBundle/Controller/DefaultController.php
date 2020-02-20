@@ -78,6 +78,19 @@ class DefaultController extends Controller
                 // you can add a notification to a list of entities
                 // the third parameter ``$flush`` allows you to directly flush the entities
                 $manager->addNotification(array($this->getUser()), $notif, true);
+
+                //sms
+
+                $basic  = new \Nexmo\Client\Credentials\Basic('b482d123', 'dr6OJo8eiRVFu9CC');
+                $client =new \Nexmo\Client($basic);
+
+
+
+                /* $message = $client->message()->send([
+                      'to' => '21656085358',
+                      'from' => 'Hunt Kingdom',
+                      'text' => 'Nouvelle urgence. Veillez vous connecter pour plus d'information'
+                  ]);*/
             }
 
         }

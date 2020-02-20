@@ -215,15 +215,15 @@
 
                         <li role="presentation" class="nav-item dropdown open">
                             <a href="javascript:;" class="dropdown-toggle info-number" id="navbarDropdown1" data-toggle="dropdown" aria-expanded="false">
-                                <i class="fa fa-envelope-o"></i>
-                                <span class="badge bg-green">{{ mgilet_notification_count(app.user) }}</span>
+                                <i class="fa fa-ambulance"></i>
+                                <span class="badge bg-green">{{ mgilet_notification_unseen_count(app.user) }}</span>
                             </a>
                             <ul class="dropdown-menu list-unstyled msg_list" role="menu" aria-labelledby="navbarDropdown1">
-                                {{ mgilet_notification_render(app.user) }}
+                                {{ mgilet_notification_render(app.user,{'seen': false }) }}
                                 <li class="nav-item">
                                     <div class="text-center">
-                                        <a class="dropdown-item">
-                                            <strong>See All Alerts</strong>
+                                        <a class="dropdown-item" href="{{ path('admin_emergency_homepage') }}">
+                                            <strong>Toutes les urgences</strong>
                                             <i class="fa fa-angle-right"></i>
                                         </a>
                                     </div>
