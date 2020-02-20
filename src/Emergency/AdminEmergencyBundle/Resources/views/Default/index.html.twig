@@ -124,13 +124,13 @@
                                             <tr {% if(u.etat == 0) %}  style="background-color: #F78181" {% endif %}>
                                                 <td>{{ u.id }}</td>
                                                 <td>{{ u.utilisateur }}</td>
-                                                <td><span data-toggle="modal" data-target=".bd-example-modal-sm" data-toggle="popover" title="cliquez pour copier" id="mouseOver" onclick="copyToClipboard(this)" onmouseover="mouseOver()" onmouseout="mouseOut()" style="cursor: pointer;" >{{ u.adresse }}</span></td>
+                                                <td><span title="cliquez pour copier" class="itineraire" id="{{ u.id }}" onclick="copyToClipboard(this)" onmouseover="mouseOver(this)" onmouseout="mouseOut(this)" style="cursor: pointer;" >{{ u.adresse }}</span></td>
                                                 <td>{{ u.latitude }}</td>
                                                 <td>{{ u.longitude }}</td>
                                                 <td>{{ u.description }}</td>
                                                 <td> {{ u.plus }}</td>
                                                 <td> {% if u.expedition.nom is null %} null {% else %} {{ u.expedition.nom }} {% endif %} </td>
-                                                <td><span data-toggle="modal" data-target=".bd-example-modal-sm" data-toggle="popover" title="cliquez pour copier" id="mouseOver" onclick="copyToClipboard(this)" onmouseover="mouseOver()" onmouseout="mouseOut()" style="cursor: pointer;" >{{ u.place_id }}</span></td>
+                                                <td><span title="cliquez pour copier" class="position" id="{{ u.id }}" onclick="copyToClipboard(this)" onmouseover="mouseOver(this)" onmouseout="mouseOut(this)" style="cursor: pointer;" >{{ u.place_id }}</span></td>
                                                 <td>{{ u.date }}</td>
                                                 <td>{% if(u.etat == 0) %}  <i class="fa fa-spinner" alt="En attente">En attente</i> {% endif %} {% if(u.etat == 1) %}  <i class="fa fa-check-square-o" alt="Intervention terminé">Terminé</i> {% endif %}</td>
                                                 <td>
@@ -190,23 +190,18 @@
                                         </div>
                                         <div id="map" style="height: 800px;"></div>
                                         <script>
-
-                                            $('.Modal').on('shown.bs.modal', function (e) {
-                                                setTimeout(function() {
-                                                    $('#overlay').modal('hide');
-                                                }, 5000);
-                                            })
                                             // change on mouse hover
 
-                                            function mouseOver() {
-                                                $('#mouseOver').popover('show')
+                                            function mouseOver(element) {
+                                                $(element).popover('show')
                                             }
 
-                                            function mouseOut() {
-                                                $('#mouseOver').popover('hide')
+                                            function mouseOut(element) {
+                                                $(element).popover('hide')
                                             }
 
                                             // copy to clipboard on click
+
 
                                             function copyToClipboard(element) {
                                                 var $temp = $("<input>");
@@ -214,12 +209,53 @@
                                                 $temp.val($(element).html()).select();
                                                 document.execCommand("copy");
                                                 $temp.remove();
-
                                             }
-                                            // Initialize the map.
 
-                                            // This function is called when the user clicks the UI button requesting
-                                            // a geocode of a place ID.
+                                            // notify toatsr
+
+                                            $('.position').on('click', function(){
+                                                toastr.options = {
+                                                    "closeButton": false,
+                                                    "debug": false,
+                                                    "newestOnTop": false,
+                                                    "progressBar": false,
+                                                    "rtl": false,
+                                                    "positionClass": "toast-top-right",
+                                                    "preventDuplicates": false,
+                                                    "onclick": null,
+                                                    "showDuration": 300,
+                                                    "hideDuration": 1000,
+                                                    "timeOut": 5000,
+                                                    "extendedTimeOut": 1000,
+                                                    "showEasing": "swing",
+                                                    "hideEasing": "linear",
+                                                    "showMethod": "slideDown",
+                                                    "hideMethod": "fadeOut"
+                                                }
+                                                toastr["success"]("coller pour localiser l'emplacement", "copié")
+                                            })
+
+                                            $('.itineraire').on('click', function(){
+                                                toastr.options = {
+                                                    "closeButton": false,
+                                                    "debug": false,
+                                                    "newestOnTop": false,
+                                                    "progressBar": false,
+                                                    "rtl": false,
+                                                    "positionClass": "toast-top-right",
+                                                    "preventDuplicates": false,
+                                                    "onclick": null,
+                                                    "showDuration": 300,
+                                                    "hideDuration": 1000,
+                                                    "timeOut": 5000,
+                                                    "extendedTimeOut": 1000,
+                                                    "showEasing": "swing",
+                                                    "hideEasing": "linear",
+                                                    "showMethod": "slideDown",
+                                                    "hideMethod": "fadeOut"
+                                                }
+                                                toastr["success"]("coller pour tracer l'itineraire", "copié")
+                                            })
 
                                         </script>
 
