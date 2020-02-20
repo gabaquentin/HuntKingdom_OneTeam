@@ -114,6 +114,13 @@
 
                                             <tbody>
                                             {% for u in urgence %}
+
+                                                {% set address =  u.adresse|split(' ', 2) %}
+
+                                                {% for statU in u %}
+                                                    {{ statU.id }}
+                                                    {% endfor %}
+
                                             <tr {% if(u.etat == 0) %}  style="background-color: #F78181" {% endif %}>
                                                 <td>{{ u.id }}</td>
                                                 <td>{{ u.utilisateur }}</td>
@@ -229,7 +236,7 @@
                 <div class="col-md-12 col-sm-12 ">
                     <div class="x_panel">
                         <div class="x_title">
-                            <h2>Tracer un itineraire vers l'emplacement d'une urgence ici <small> </small></h2>
+                            <h2>Tracer un itineraire vers l'emplacement d'une urgence ici<small> </small></h2>
                             <ul class="nav navbar-right panel_toolbox">
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>

@@ -19,7 +19,8 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $expedition = $em->getRepository("EmergencyBundle:Expedition")->findAll();
-        return $this->render('@AdminEmergency/Default/prevention.html.twig',array('expedition'=>$expedition));
+        $urgence = $em->getRepository("EmergencyBundle:Urgence")->findAll();
+        return $this->render('@AdminEmergency/Default/prevention.html.twig',array('expedition'=>$expedition,'urgence'=>$urgence));
     }
 
     public function prevention_detailExpAction($id)
