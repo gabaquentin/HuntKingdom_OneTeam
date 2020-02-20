@@ -29,11 +29,19 @@ class DefaultController extends Controller
         return $this->render('@AdminEmergency/Default/prevention_detailExp.html.twig',array('expedition'=>$expedition));
     }
 
-    public  function prevention_delExpAction($id){
-        $em=$this->getDoctrine()->getManager();
-        $expedition=$em->getRepository(Expedition::class)->find($id);
-        $em->remove($expedition);
+    public  function prevention_archExpAction($id){
+        $em = $this->getDoctrine()->getManager();
+        $exp = $em->getRepository(Expedition::class)->find($id);
+
+        if (!$exp) {
+            throw $this->createNotFoundException(
+                'No expedition found for id '.$id
+            );
+        }
+
+        $exp->setStatut('3');
         $em->flush();
+
         return $this->redirectToRoute('admin_emergency_prevention');
     }
 
