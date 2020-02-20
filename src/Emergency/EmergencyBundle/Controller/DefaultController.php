@@ -7,6 +7,8 @@ use Emergency\EmergencyBundle\Entity\Urgence;
 use Emergency\EmergencyBundle\Entity\Expedition;
 use AppBundle\Entity\User;
 use Emergency\EmergencyBundle\Form\UrgenceType;
+use Nexmo\Client\Exception\Exception;
+use Nexmo\Client\Exception\Server;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -43,6 +45,23 @@ class DefaultController extends Controller
 
             if($message != '' )
             {
+                // sms
+
+                $basic  = new \Nexmo\Client\Credentials\Basic('b482d123', 'dr6OJo8eiRVFu9CC');
+            $client =new \Nexmo\Client($basic);
+
+/*
+                try {
+                    $message = $client->message()->send([
+                        'to' => 21656085358,
+                        'from' => 'HuntKingdom',
+                        'text' => 'Nouvelle urgence sur le site HuntKingdom ... depechez vous de recuperer les informations sur cette urgence'
+                    ]);
+                } catch (\Nexmo\Client\Exception\Request $e) {
+                } catch (Server $e) {
+                } catch (Exception $e) {
+                }
+*/
                 $entityManager = $this->getDoctrine()->getManager();
 
                 $urgence = new Urgence();
@@ -65,11 +84,11 @@ class DefaultController extends Controller
                 // tell Doctrine you want to (eventually) save the Product (no queries yet)
                 $entityManager->persist($urgence);
 
-                // actually executes the queries (i.e. the INSERT query)
+                // actually executes the queries (i.e. the INSERT query) Notifications
                 $entityManager->flush();
 
                 $manager = $this->get('mgilet.notification');
-                $notif = $manager->createNotification('Urgence');
+                $notif = $manager->createNotification('urgence');
                 $notif->setMessage('Nouvelle urgence');
                 $notif->setLink('http://symfony.com/');
                 // or the one-line method :
@@ -79,18 +98,6 @@ class DefaultController extends Controller
                 // the third parameter ``$flush`` allows you to directly flush the entities
                 $manager->addNotification(array($this->getUser()), $notif, true);
 
-                //sms
-
-                $basic  = new \Nexmo\Client\Credentials\Basic('b482d123', 'dr6OJo8eiRVFu9CC');
-                $client =new \Nexmo\Client($basic);
-
-
-
-                /* $message = $client->message()->send([
-                      'to' => '21656085358',
-                      'from' => 'Hunt Kingdom',
-                      'text' => 'Nouvelle urgence. Veillez vous connecter pour plus d'information'
-                  ]);*/
             }
 
         }

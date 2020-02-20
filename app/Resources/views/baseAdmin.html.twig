@@ -212,24 +212,23 @@
                                 <a class="dropdown-item"  href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                             </div>
                         </li>
-
-                        <li role="presentation" class="nav-item dropdown open">
+                        <li role="presentation" class="nav-item dropdown open" style="scroll-padding-right: 15px;">
                             <a href="javascript:;" class="dropdown-toggle info-number" id="navbarDropdown1" data-toggle="dropdown" aria-expanded="false">
                                 <i class="fa fa-ambulance"></i>
                                 <span class="badge bg-green">{{ mgilet_notification_unseen_count(app.user) }}</span>
                             </a>
                             <ul class="dropdown-menu list-unstyled msg_list" role="menu" aria-labelledby="navbarDropdown1">
-                                {{ mgilet_notification_render(app.user,{'seen': false }) }}
-                                <li class="nav-item">
-                                    <div class="text-center">
-                                        <a class="dropdown-item" href="{{ path('admin_emergency_homepage') }}">
-                                            <strong>Toutes les urgences</strong>
-                                            <i class="fa fa-angle-right"></i>
-                                        </a>
-                                    </div>
-                                </li>
-                            </ul>
+                        {{ mgilet_notification_render(app.user,{'seen': false }) }}
+                        <li class="nav-item">
+                            <div class="text-center">
+                                <a class="dropdown-item" href="{{path('admin_emergency_homepage')}}">
+                                    <strong>Voir toutes les urgences</strong>
+                                    <i class="fa fa-angle-right"></i>
+                                </a>
+                            </div>
                         </li>
+                    </ul>
+                    </li>
                     </ul>
                 </nav>
             </div>
