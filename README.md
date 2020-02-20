@@ -96,6 +96,7 @@ composer install
 
 with :
 
+.. code-block:: php
 
 {% trans_default_domain 'FOSUserBundle' %}
 
