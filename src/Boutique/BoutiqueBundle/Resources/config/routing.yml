@@ -1,0 +1,6 @@
+boutique_homepage:
+    path:     /
+    defaults: { _controller: BoutiqueBundle:Default:index }
+boutique_ProductDetail:
+    path:     /ProductDetail/{id}
+    defaults: { _controller: BoutiqueBundle:Default:ProductDetail }

@@ -1,0 +1,130 @@
+{% extends 'base.html.twig' %}
+{% block admin_boutique_ajouter %}
+
+    <body class="nav-md">
+
+    <!-- /top navigation -->
+
+    <!-- page content -->
+    <div class="right_col" role="main">
+        <div class="">
+            <div class="page-title">
+                <div class="title_left">
+                    <h3>Gestion de Produits</h3>
+                </div>
+
+                <div class="title_right">
+                    <div class="col-md-5 col-sm-5 form-group pull-right top_search">
+                        <div class="input-group">
+
+                            <input type="text" class="form-control" placeholder="Search for...">
+                            <span class="input-group-btn">
+                    <button class="btn btn-default" type="button">Go!</button>
+                  </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>Ajouter Fournisseur <small></small></h2>
+                            <ul class="nav navbar-right panel_toolbox">
+                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i
+                                                class="fa fa-wrench"></i></a>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="#">Settings 1</a>
+                                        <a class="dropdown-item" href="#">Settings 2</a>
+                                    </div>
+                                </li>
+                                <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                        {% for message in app.flashes('information') %}
+                            <div class="alert alert-success alert-dismissible fade show"> {{ message }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+
+                        {% endfor %}
+                        <div class="x_content">
+                            {{ form_start(form,{'attr':{'class':'form'}}) }}
+
+                            </p>
+                            <span class="section">Ajouter Fournisseur</span>
+                            <div class="field item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3  label-align">Nom Fournisseur: <span
+                                            class="">*</span></label>
+                                <div class="col-md-6 col-sm-6">
+                                    {{ form_widget(form.nomFournisseur, {'attr': {'class': 'form-control'}}) }}
+
+                                </div>
+                            </div>
+
+                            <div class="field item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3  label-align">Matricule Fournisseur: <span
+                                            class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6">
+                                    {{ form_widget(form.idFournisseur, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                            </div>
+
+                            <div class="field item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3  label-align">E-Mail Fournisseur: <span
+                                            class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6">
+                                    {{ form_widget(form.emailFournisseur, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                            </div>
+
+
+
+                            <!--
+                                                            <div class="field item form-group">
+                                                                <label class="col-form-label col-md-3 col-sm-3  label-align">Image<span
+                                                                            class="required">*</span></label>
+                                                                <div class="col-md-6 col-sm-6">
+                                                                    <input class="form-control" type="File" class='tel' name="Image"
+                                                                           data-validate-length-range="8,20" /></div>
+                                                            </div>
+
+                            -->
+
+
+                        </div>
+
+
+                        <div class="ln_solid">
+                            <div class="form-group">
+                                <div class="col-md-6 offset-md-3">
+                                    {{ form_widget(form.Ajouter, {'attr': {'class': 'btn btn-primary'}}) }}
+
+
+                                    <button type='reset' class="btn btn-success">Reset</button>
+                                </div>
+                            </div>
+                        </div>
+                        {{ form_end(form) }}
+                        <!-- </form> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- /page content -->
+
+    <!-- footer content -->
+
+    </body>
+
+{% endblock %}
