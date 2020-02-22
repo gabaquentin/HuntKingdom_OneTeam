@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>{{ app.request.attributes.get('_route') }}</title>
+    <title>{% block titleAdmin %} }}{{ app.request.attributes.get('_route') }} {% endblock %}</title>
     {% block css %}
     <link rel="icon" href="{{ asset('admin/production/images/favicon.png') }}">
     <!-- Bootstrap -->
