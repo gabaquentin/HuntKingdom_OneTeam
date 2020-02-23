@@ -25,6 +25,7 @@ class AppKernel extends Kernel
             new Mgilet\NotificationBundle\MgiletNotificationBundle(),
             new Boutique\BoutiqueBundle\BoutiqueBundle(),
             new AdminBoutiqueBundle\AdminBoutiqueBundle(),
+            new CMEN\GoogleChartsBundle\CMENGoogleChartsBundle(),
             new SAV\SAVBundle\SAVBundle(),
             new SAV\AdminSAVBundle\AdminSAVBundle(),
         ];

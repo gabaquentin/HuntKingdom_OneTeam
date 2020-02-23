@@ -16,6 +16,7 @@
     "require": {
         "php": ">=7.4.0",
         "ext-json": "*",
+        "cmen/google-charts-bundle": "^3.2",
         "doctrine/doctrine-bundle": "^1.6",
         "doctrine/doctrine-migrations-bundle": "^1.3",
         "doctrine/orm": "^2.5",
