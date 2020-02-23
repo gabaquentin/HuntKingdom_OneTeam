@@ -1,0 +1,27 @@
+admin_sav_homepage:
+    path:     /
+    defaults: { _controller: AdminSAVBundle:Default:index }
+admin_sav_addLiv:
+    path:     /addLiv
+    defaults: { _controller: AdminSAVBundle:Livraison:addLiv }
+admin_sav_ListLivraison:
+    path:     /ListLivraison
+    defaults: { _controller: AdminSAVBundle:Livraison:ListLivraison }
+admin_sav_deleteLivraison:
+    path:     /deleteLivraison/{id}
+    defaults: { _controller: AdminSAVBundle:Livraison:deleteLivraison }
+admin_sav_updateLivraison:
+    path:     /ListLivraison/{id}
+    defaults: { _controller: AdminSAVBundle:Livraison:updateLivraison }
+admin_sav_addLivreur:
+    path:     /addLivreur
+    defaults: { _controller: AdminSAVBundle:Livreur:addLivreur }
+admin_sav_ListLivreur:
+    path:     /ListLivreur
+    defaults: { _controller: AdminSAVBundle:Livreur:ListLivreur }
+admin_sav_deleteLivreur:
+    path:     /deleteLivreur/{id}
+    defaults: { _controller: AdminSAVBundle:Livreur:deleteLivreur }
+admin_sav_updateLivreur:
+    path:     /ListLivreur/{id}
+    defaults: { _controller: AdminSAVBundle:Livreur:updateLivreur }
