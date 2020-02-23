@@ -75,12 +75,12 @@
                             </li>
                             <li><a><i class="fa fa-shopping-cart"></i> Produits <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a href="form.html" >Ajouter Produit</a></li>
-                                    <li><a href="form_advanced.html">Advanced Components</a></li>
-                                    <li><a href="form_validation.html">Form Validation</a></li>
-                                    <li><a href="form_wizards.html">Form Wizard</a></li>
-                                    <li><a href="form_upload.html">Form Upload</a></li>
-                                    <li><a href="form_buttons.html">Form Buttons</a></li>
+                                    <li><a href="{{path('admin_boutique_homepage')}}" >Ajouter Produit</a></li>
+                                    <li><a href="{{path('admin_boutique_afficher')}}">Afficher Produits</a></li>
+                                    <li><a href="{{path('admin_boutique_ajoutFournisseur')}}">Ajouter Fournisseur</a></li>
+                                    <li><a href="{{path('admin_boutique_afficheFournisseur')}}">Afficher Fournisseur</a></li>
+                                    <li><a href="{{path('admin_boutique_statistique')}}">Statistiques Produits</a></li>
+
                                 </ul>
                             </li>
                             <li><a><i class="fa fa-credit-card"></i> Commandes <span class="fa fa-chevron-down"></span></a>
@@ -242,6 +242,8 @@
         {% block admin_accueil %} {% endblock %}
         {% block admin_emergency_prevention %} {% endblock %}
         {% block admin_emergency_prevention_detail %} {% endblock %}
+        {% block admin_boutique_ajouter %} {% endblock %}
+
 
 {% block footer %}
         <footer>
