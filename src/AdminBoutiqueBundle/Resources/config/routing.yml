@@ -1,0 +1,44 @@
+admin_boutique_homepage:
+    path:     /
+    defaults: { _controller: AdminBoutiqueBundle:Default:index }
+
+admin_boutique_afficher:
+    path:     /affiche
+    defaults: { _controller: AdminBoutiqueBundle:Produits:affiche }
+
+admin_boutique_supprimer:
+    path:   /delete/{id}
+    defaults: { _controller: AdminBoutiqueBundle:Produits:delete }
+
+admin_boutique_modifier:
+    path:   /modifier/{id}
+    defaults: { _controller: AdminBoutiqueBundle:Produits:modifier }
+
+admin_boutique_ajoutFournisseur:
+    path:   /ajoutFournisseur
+    defaults: { _controller: AdminBoutiqueBundle:Fournisseur:ajoutFournisseur }
+
+admin_boutique_afficheFournisseur:
+    path:     /afficheFournisseur
+    defaults: { _controller: AdminBoutiqueBundle:Fournisseur:afficheFournisseur }
+
+admin_boutique_supprimerFournisseur:
+    path:     /supprimerFournisseur/{id}
+    defaults: { _controller: AdminBoutiqueBundle:Fournisseur:supprimerFournisseur }
+
+admin_boutique_modifierFournisseur:
+    path:     /modifierFournisseur/{id}
+    defaults: { _controller: AdminBoutiqueBundle:Fournisseur:modifierFournisseur }
+admin_boutique_statistique:
+    path:     /statistique
+    defaults: { _controller: AdminBoutiqueBundle:Produits:statistique}
+admin_boutique_details:
+    path:     /ProductDetailBack/{id}
+    defaults: { _controller: AdminBoutiqueBundle:Produits:ProductDetailBack}
+admin_boutique_mailFournisseur:
+    path:     /mailFournisseur/{id}
+    defaults: { _controller: AdminBoutiqueBundle:Fournisseur:mailFournisseur}
+
+
+
+
