@@ -77,5 +77,18 @@ fos_user:
     service:
         mailer: fos_user.mailer.twig_swift
     from_email:
-        address: "quentin.gabadodo@esprit.tn"
-        sender_name: "quentin"
+        address: quentin.gabadodo@esprit.tn
+        sender_name: HuntKingdom
+    registration:
+        confirmation:
+            enabled: true
+            from_email:
+                address: huntKingdom216@gmail.com
+                sender_name: HuntKingdom
+            template :   email/password_registration.email.twig
+    resetting:
+        email:
+            from_email:
+                address:        huntKingdom216@gmail.com
+                sender_name:    HuntKingdom
+            template:   email/password_resetting.email.twig
