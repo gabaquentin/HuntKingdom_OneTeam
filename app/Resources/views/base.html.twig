@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>{{ app.request.attributes.get('_route') }}</title>
+    <title>{% block title %}{{ app.request.attributes.get('_route') }} {% endblock %}</title>
     {% block css %}
     <link rel="icon" href="{{ asset('img/favicon.png') }}">
     <!-- Bootstrap CSS -->
@@ -89,9 +89,11 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="contact.php">Contact</a>
                             </li>
+
                         </ul>
                     </div>
                     <div class="hearer_icon d-flex align-items-center">
+                        <a id="profil" href="{{ path('user_profile') }}" title="profil" ><i class="fa fa-person-booth"></i></a>
                         <a id="search_1" href="javascript:void(0)"><i class="ti-search"></i></a>
                         <a id="emergency" href="{{ path('emergency_homepage') }}"><i class="fa fa-ambulance"></i></a>
                         <a href="cart.php">
@@ -117,6 +119,7 @@
 
 {% block auth %} {% endblock %}
 {% block accueil %} {% endblock %}
+{% block profil %} {% endblock %}
 {% block emergency %} {% endblock %}
 {% block emergency_expedition %} {% endblock %}
 

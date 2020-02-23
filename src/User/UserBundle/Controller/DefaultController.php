@@ -15,4 +15,9 @@ class DefaultController extends Controller
     {
         return $this->render('@User/Default/indexAdmin.html.twig');
     }
+
+    public function profilAction()
+    {
+        return $this->render('@User/Default/profil.html.twig');
+    }
 }
