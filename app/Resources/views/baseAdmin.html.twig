@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>{% block titleAdmin %} }}{{ app.request.attributes.get('_route') }} {% endblock %}</title>
+    <title>{% block titleAdmin %} {{ app.request.attributes.get('_route') }} {% endblock %}</title>
     {% block css %}
     <link rel="icon" href="{{ asset('admin/production/images/favicon.png') }}">
     <!-- Bootstrap -->
@@ -104,11 +104,10 @@
                             </li>
                             <li><a><i class="fa  fa-wrench"></i> Service Après-Vente <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a href="chartjs.html">Chart JS</a></li>
-                                    <li><a href="chartjs2.html">Chart JS2</a></li>
-                                    <li><a href="morisjs.html">Moris JS</a></li>
-                                    <li><a href="echarts.html">ECharts</a></li>
-                                    <li><a href="other_charts.html">Other Charts</a></li>
+                                    <li><a href="{{path('admin_sav_addLiv')}}">Ajouter Livraison</a></li>
+                                    <li><a href="{{path('admin_sav_ListLivraison')}}">Liste de Livraison</a></li>
+                                    <li><a href="{{path('admin_sav_addLivreur')}}">Ajouter Livreur</a></li>
+                                    <li><a href="{{path('admin_sav_ListLivreur')}}">Liste de Livreur</a></li>
                                 </ul>
                             </li>
                             <li><a><i class="fa fa-medkit"></i>Service Prévention <span class="fa fa-chevron-down"></span></a>
@@ -242,6 +241,10 @@
         {% block admin_accueil %} {% endblock %}
         {% block admin_emergency_prevention %} {% endblock %}
         {% block admin_emergency_prevention_detail %} {% endblock %}
+        {% block livreur %} {% endblock %}
+        {% block addlivreur %} {% endblock %}
+        {% block addLiv %} {% endblock %}
+        {% block list_liv %} {% endblock %}
 
 {% block footer %}
         <footer>

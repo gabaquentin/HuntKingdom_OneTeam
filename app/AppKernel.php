@@ -23,6 +23,8 @@ class AppKernel extends Kernel
             new Emergency\EmergencyBundle\EmergencyBundle(),
             new Emergency\AdminEmergencyBundle\AdminEmergencyBundle(),
             new Mgilet\NotificationBundle\MgiletNotificationBundle(),
+            new SAV\SAVBundle\SAVBundle(),
+            new SAV\AdminSAVBundle\AdminSAVBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
