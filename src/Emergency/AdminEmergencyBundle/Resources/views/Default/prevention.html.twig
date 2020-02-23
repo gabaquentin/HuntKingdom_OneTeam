@@ -57,7 +57,7 @@
                                 <tr>
                                     <th style="width: 1%">#</th>
                                     <th style="width: 20%">Nom Expedition</th>
-                                    <th>Membres</th>
+                                    <th>Membre</th>
                                     <th>Progression de l'expedition</th>
                                     <th>Statut</th>
                                     <th style="width: 20%">#Actions</th>
@@ -78,15 +78,8 @@
                                             <li>
                                                 <img src="{{  asset('admin/production/images/user.png') }}" class="avatar" alt="Avatar">
                                             </li>
-                                            <li>
-                                                <img src="{{  asset('admin/production/images/user.png') }}" class="avatar" alt="Avatar">
-                                            </li>
-                                            <li>
-                                                <img src="{{  asset('admin/production/images/user.png') }}" class="avatar" alt="Avatar">
-                                            </li>
-                                            <li>
-                                                <img src="{{  asset('admin/production/images/user.png') }}" class="avatar" alt="Avatar">
-                                            </li>
+                                            <li> {{e.utilisateur.nom}} </li>
+
                                         </ul>
                                     </td>
                                     <td class="project_progress">

@@ -4,6 +4,9 @@ user_homepage:
 user_profile:
     path:     /profil
     defaults: { _controller: UserBundle:Default:profil }
+user_end_expedition:
+    path:     /endExp/{id}
+    defaults: { _controller: UserBundle:Default:endExp }
 user_admin_homepage:
     path:     /admin
     defaults: { _controller: UserBundle:Default:indexAdmin }
