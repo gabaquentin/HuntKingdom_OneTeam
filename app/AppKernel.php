@@ -25,6 +25,7 @@ class AppKernel extends Kernel
             new Mgilet\NotificationBundle\MgiletNotificationBundle(),
             new Boutique\BoutiqueBundle\BoutiqueBundle(),
             new AdminBoutiqueBundle\AdminBoutiqueBundle(),
+            new CMEN\GoogleChartsBundle\CMENGoogleChartsBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
