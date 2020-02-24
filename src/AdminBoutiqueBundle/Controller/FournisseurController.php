@@ -3,12 +3,14 @@
 namespace AdminBoutiqueBundle\Controller;
 
 use AdminBoutiqueBundle\Entity\Fournisseur;
+use AdminBoutiqueBundle\Entity\Mail;
 use AdminBoutiqueBundle\Entity\Produits;
 use AdminBoutiqueBundle\Form\FournisseurType;
+use AdminBoutiqueBundle\Form\MailType;
 use AdminBoutiqueBundle\Form\ProduitsType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-
+use Swift_Mailer;
 class FournisseurController extends Controller
 {
     public function ajoutFournisseurAction(Request $request)
@@ -89,16 +91,33 @@ class FournisseurController extends Controller
 
     public function mailFournisseurAction(Request $request, Fournisseur $Fournisseur)
     {
-        $form = $this->createForm(FournisseurType::class,$Fournisseur);
-        $form->HandleRequest($request);
 
-        if($form->isSubmitted())
+        $mail= new Mail();
+
+        $em = $this->getDoctrine()->getManager();
+        $fournisseur= $em->getRepository(Fournisseur::class)->find($Fournisseur);
+        $adresse=$fournisseur->getEmailFournisseur();
+        $nom=$fournisseur->getnomFournisseur();
+
+
+        $form = $this->createForm(MailType::class,$mail);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid())
         {
-            $em = $this->getDoctrine()->getManager();
+            $subject= $mail->getSujet();
+            $object=$mail->getObjet();
 
-            $em->flush();
+
+
+            $username='huntkingdom216@gmail.com';
+            $message= \Swift_Message::newInstance()
+                ->setSubject($subject)
+                ->setFrom($username)
+                ->setTo($adresse)
+                ->setBody($object);
+            $this->get('mailer')->send($message);
             $this->addFlash(
-                'information',
+                'in',
                 'Envoyé Avec Succès'
             );
 
@@ -106,8 +125,7 @@ class FournisseurController extends Controller
             return $this->redirectToRoute('admin_boutique_afficheFournisseur');
 
         }
-
-        return $this->render("@AdminBoutique/Default/mailFournisseur.html.twig",array('form'=>$form->createView()));
+        return $this->render('@AdminBoutique/Default/mailFournisseur.html.twig',array('f'=>$form->createView(),'adresse'=>$adresse,'nom'=>$nom));
     }
 
 
