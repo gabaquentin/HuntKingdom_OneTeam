@@ -4,7 +4,7 @@ admin_sav:
 
 sav:
     resource: "@SAVBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /sav
 admin_boutique:
     resource: "@AdminBoutiqueBundle/Resources/config/routing.yml"
     prefix:   /adminBoutique

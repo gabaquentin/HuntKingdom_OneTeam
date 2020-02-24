@@ -8,6 +8,6 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('SAVBundle:Default:index.html.twig');
+        return $this->render('@SAV/Default/index.html.twig');
     }
 }
