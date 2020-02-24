@@ -1,6 +1,6 @@
 <?php
 
-namespace Boutique\AdminBoutiqueBundle\Tests\Controller;
+namespace AdminBoutiqueBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
