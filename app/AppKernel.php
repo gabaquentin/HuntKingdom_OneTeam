@@ -26,6 +26,8 @@ class AppKernel extends Kernel
             new Boutique\BoutiqueBundle\BoutiqueBundle(),
             new AdminBoutiqueBundle\AdminBoutiqueBundle(),
             new CMEN\GoogleChartsBundle\CMENGoogleChartsBundle(),
+            new SAV\SAVBundle\SAVBundle(),
+            new SAV\AdminSAVBundle\AdminSAVBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
