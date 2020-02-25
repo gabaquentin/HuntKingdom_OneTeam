@@ -65,7 +65,7 @@
                                 </thead>
                                 <tbody>
                                 {% for e in expedition %}
-                                    {% if e.statut != 3 %}
+                                    {% if (e.statut != 3) and (e.nom != "null") %}
                                 <tr>
                                     <td>#</td>
                                     <td>

@@ -18,6 +18,16 @@ class DefaultController extends Controller
         return $this->render('@User/Default/indexAdmin.html.twig');
     }
 
+    public function aboutAction()
+    {
+        return $this->render('@User/Default/apropos.html.twig');
+    }
+
+    public function contactAction()
+    {
+        return $this->render('@User/Default/contact.html.twig');
+    }
+
     public function profilAction()
     {
         $em = $this->getDoctrine()->getManager();

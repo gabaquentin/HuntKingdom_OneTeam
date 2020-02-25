@@ -121,7 +121,7 @@
                                                     {{ statU.id }}
                                                     {% endfor %}
 
-                                            <tr {% if(u.etat == 0) %}  style="background-color: #F78181" {% endif %}>
+                                            <tr {% if(u.etat == 0) %}  style="background-color: #F78181" {% endif %} id="{{ u.id }}" >
                                                 <td>{{ u.id }}</td>
                                                 <td>{{ u.utilisateur }}</td>
                                                 <td><span title="cliquez pour copier" class="itineraire" id="{{ u.id }}" onclick="copyToClipboard(this)" onmouseover="mouseOver(this)" onmouseout="mouseOut(this)" style="cursor: pointer;" >{{ u.adresse }}</span></td>
@@ -135,7 +135,7 @@
                                                 <td>{% if(u.etat == 0) %}  <i class="fa fa-spinner" alt="En attente">En attente</i> {% endif %} {% if(u.etat == 1) %}  <i class="fa fa-check-square-o" alt="Intervention terminé">Terminé</i> {% endif %}</td>
                                                 <td>
                                                     {% if (u.etat == 0) %}
-                                                        <a href="{{ path('admin_emergency_traiter',{'id':u.id}) }}" class="btn btn-primary btn-xs"><i class="fa fa-thumbs-up"></i> Traité </a>
+                                                        <a href="{{ path('admin_emergency_traiter',{'id':u.id}) }}" class="btn btn-primary btn-xs"><i class="fa fa-thumbs-up"></i> Traiter </a>
                                                     {% endif %}
                                                     {% if (u.etat == 1) %}
                                                         <a class="btn btn-success btn-xs"><i class="fa fa-plus-square"></i> Terminé </a>
