@@ -4,6 +4,15 @@ user_homepage:
 user_profile:
     path:     /profil
     defaults: { _controller: UserBundle:Default:profil }
+user_about:
+    path:     /about
+    defaults: { _controller: UserBundle:Default:about }
+user_contact:
+    path:     /contact
+    defaults: { _controller: UserBundle:Default:contact }
+user_end_expedition:
+    path:     /endExp/{id}
+    defaults: { _controller: UserBundle:Default:endExp }
 user_admin_homepage:
     path:     /admin
     defaults: { _controller: UserBundle:Default:indexAdmin }

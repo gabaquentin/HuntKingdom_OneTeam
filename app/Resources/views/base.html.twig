@@ -51,7 +51,7 @@
                                 <a class="nav-link" href="{{ path('user_homepage') }}">Accueil</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="about.php">A propos</a>
+                                <a class="nav-link" href="{{ path('user_about') }}">A propos</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="blog.php" id="navbarDropdown_1"
@@ -87,7 +87,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="contact.php">Contact</a>
+                                <a class="nav-link" href="{{path('user_contact')}}">Contact</a>
                             </li>
 
                         </ul>
@@ -120,6 +120,8 @@
 {% block auth %} {% endblock %}
 {% block accueil %} {% endblock %}
 {% block profil %} {% endblock %}
+{% block about %} {% endblock %}
+{% block contact %} {% endblock %}
 {% block emergency %} {% endblock %}
 {% block emergency_expedition %} {% endblock %}
 {% block Produits %} {% endblock %}
@@ -251,9 +253,16 @@
 <script src="{{ asset('assets/bootstrap/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('assets/js/jquery.backstretch.min.js') }}"></script>
 <script src="{{ asset('assets/js/wow.min.js') }}"></script>
-<!--[if lt IE 10]>
-    <script src="assets/js/placeholder.js"></script>
 
+    <!-- ================ contact section end ================= -->
+    <script src="{{ asset('js/jquery.counterup.min.js') }}"></script>
+    <script src="{{ asset('js/waypoints.min.js') }}"></script>
+    <script src="{{ asset('js/contact.js') }}"></script>
+    <script src="{{ asset('js/jquery.ajaxchimp.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.form.js') }}"></script>
+    <script src="{{ asset('js/jquery.validate.min.js') }}"></script>
+    <script src="{{ asset('js/mail-script.js') }}"></script>
+    <!-- custom js -->
 {% endblock %}
 
 </html>

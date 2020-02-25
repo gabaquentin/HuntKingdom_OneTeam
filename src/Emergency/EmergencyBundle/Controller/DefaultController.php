@@ -108,7 +108,9 @@ class DefaultController extends Controller
 
     public function ExpeditionAction()
     {
-        return $this->render('@Emergency/Default/expedition.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $urgence = $em->getRepository("EmergencyBundle:Urgence")->findAll();
+        return $this->render('@Emergency/Default/expedition.html.twig',array('urgence'=>$urgence));
     }
 
     public function addExpeditionAction(Request $request)
