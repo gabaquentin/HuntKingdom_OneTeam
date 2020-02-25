@@ -1,6 +1,8 @@
 # HuntKingdom_OneTeam
 PIDEV PROJECT 3A19 Esprit 19-20
 
+# Please read step by step instruction before use this  
+
 Symfony Standard Edition
 ========================
 
@@ -78,3 +80,14 @@ Enjoy!
 [13]: https://symfony.com/doc/current/bundles/SensioGeneratorBundle/index.html
 [14]: https://symfony.com/doc/current/setup/built_in_web_server.html
 [15]: https://symfony.com/doc/current/setup.html
+
+
+
+# STEP BY STEP INSTRUCTIONS TO USE THAT
+
+# 1st install composer 
+
+composer install
+
+
+# 2nd set symfony and composer commands
