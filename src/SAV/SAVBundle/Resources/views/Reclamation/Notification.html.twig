@@ -1,0 +1,16 @@
+{% extends 'baseAdmin.html.twig' %}
+{% block Notif %}
+    <div>
+        <h1>Notification</h1>
+        <ul >
+            {% for n in notificationss  %}
+                <li>
+                {{% n.title %}}<br>
+                {{% n.description %}}<br>
+                {% else %}
+                <li>See</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <br><br><br><br><br><br>
+{% endblock %}
