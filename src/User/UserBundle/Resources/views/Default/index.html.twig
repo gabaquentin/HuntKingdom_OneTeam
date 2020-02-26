@@ -206,40 +206,44 @@
             <div class="row justify-content-between">
                 <div class="col-lg-6">
                     <div class="feature_part_tittle">
-                        <h3>Credibly innovate granular
-                            internal or organic sources
-                            whereas standards.</h3>
+                        <h3>L'inovation dans tous les domaines</h3>
                     </div>
                 </div>
                 <div class="col-lg-5">
                     <div class="feature_part_content">
-                        <p>Seamlessly empower fully researched growth strategies and interoperable internal or “organic” sources. Credibly innovate granular internal or “organic” sources whereas high standards in web-readiness.</p>
+                        <p>Un site web securisé et securisant vous permettant de faire des achats, de
+                            {% if is_granted('ROLE_PECHE') %}
+                        pecher
+                        {% elseif is_granted('ROLE_CHASSE') %}
+                        chasser
+                        {% endif %}
+                        en toute securité et de partager votre experience avec d'autres pasionnés ou d'apprendre de nouvelles choses</p>
                     </div>
                 </div>
             </div>
             <div class="row justify-content-center">
                 <div class="col-lg-3 col-sm-6">
                     <div class="single_feature_part">
-                        <img src="img/icon/feature_icon_1.svg" alt="#">
-                        <h4>Credit Card Support</h4>
+                        <img src="{{ asset('img/icon/feature_icon_2.svg') }}" alt="#">
+                        <h4>Boutique en ligne</h4>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6">
                     <div class="single_feature_part">
-                        <img src="img/icon/feature_icon_2.svg" alt="#">
-                        <h4>Online Order</h4>
+                        <img src="{{ asset('img/icon/icon_4.png') }}" alt="#">
+                        <h4>la Priorité c'est vous</h4>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6">
                     <div class="single_feature_part">
-                        <img src="img/icon/feature_icon_3.svg" alt="#">
-                        <h4>Free Delivery</h4>
+                        <img src="{{ asset('img/icon/icon_1.png') }}" alt="#">
+                        <h4>Interventions rapides</h4>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6">
                     <div class="single_feature_part">
-                        <img src="img/icon/feature_icon_4.svg" alt="#">
-                        <h4>Product with Gift</h4>
+                        <img src="{{ asset('img/icon/feature_icon_4.svg') }}" alt="#">
+                        <h4>Partagez votre savoir</h4>
                     </div>
                 </div>
             </div>
@@ -247,24 +251,96 @@
     </section>
     <!-- feature part end -->
 
+        {% set count = 0 %}
+        {% for an in aNews %}
+            {% if an.utilisateur.id == app.user.id %}
+                {% set count = count + 1 %}
+            {% endif %}
+        {% endfor %}
+        {% if count <= 0 %}
+
     <!-- subscribe part here -->
     <section class="subscribe_part section_padding">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <div class="subscribe_part_content">
-                        <h2>Get promotions & updates!</h2>
-                        <p>Seamlessly empower fully researched growth strategies and interoperable internal or “organic” sources credibly innovate granular internal .</p>
+                        <form class="newsForm" action="{{ path('user_new_news') }}" method="post" id="newsForm"
+                              novalidate="novalidate" name="form">
+                        <h2>Restez informez !</h2>
+                        <p id="h2out">Inscrivez vous dans notre newsletter pour etre au courant des nouvelles mises a jour et recevoir des promotions et des conseils directement dans votre boite mail </p>
                         <div class="subscribe_form">
-                            <input type="email" placeholder="Enter your mail">
-                            <a href="#" class="btn_1">Subscribe</a>
+                            <input type="email" id="email" class="email" placeholder="Votre e-mail" value="{{ app.user.email }}" >
+                            <button type="submit" href="#" class="btn_1">S'inscrire</button>
                         </div>
+                        </form>
+                        <h2 class="contact-title" id="h2in">Reussie </h2>
                     </div>
                 </div>
             </div>
         </div>
     </section>
     <!-- subscribe part end -->
+
+    {% endif %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+
+        $(function() {
+            $('#finish').hide();
+            $('#h2in').hide();
+        });
+        // handle request submit form
+
+        $(document).ready(function(){
+
+            (function($) {
+                "use strict";
+
+                // validate contactForm form
+                $(function() {
+                    $('#newsForm').validate({
+                        rules: {
+                            email: {
+                                required: true,
+                            }
+                        },
+                        messages: {
+                            email: {
+                                required: "ne peut etre vide."
+                            }
+                        },
+                        submitHandler: function(form) {
+                            $(form).ajaxSubmit({
+                                type:"POST",
+                                data: $(form).serialize(),
+                                url:"{{ path('user_new_news') }}",
+                                success: function() {
+                                    $('#newsForm :input').attr('disabled', 'disabled');
+                                    $('#newsForm').fadeTo("slow", 1, function () {
+                                        $(this).find(':input').attr('disabled', 'disabled');
+                                        $(this).find('label').css('cursor', 'default');
+                                        swal("Succés", "Souscription a la newsletter reussie", "success");
+                                    })
+                                    $('#newsForm').fadeOut('low');
+                                    $('#h2out').fadeOut('low');
+                                    $('#h2in').fadeIn('low');
+                                },
+                                error: function() {
+                                    $('#newsForm').fadeTo( "slow", 1, function() {
+                                        swal("Echec", "Souscription a la newsletter echoué... réesayé", "error");
+                                    })
+                                }
+                            })
+                        }
+                    })
+                })
+
+            })(jQuery)
+        })
+    </script>
 
 {% endblock %}
 {% block authFooter %}{% endblock %}

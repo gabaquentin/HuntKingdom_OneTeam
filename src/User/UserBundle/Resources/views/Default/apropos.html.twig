@@ -121,24 +121,100 @@
     </section>
     <!-- client review part end -->
 
-    <!-- subscribe part here -->
-    <section class="subscribe_part section_padding">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="subscribe_part_content">
-                        <h2>Get promotions & updates!</h2>
-                        <p>Seamlessly empower fully researched growth strategies and interoperable internal or “organic” sources credibly innovate granular internal .</p>
-                        <div class="subscribe_form">
-                            <input type="email" placeholder="Enter your mail">
-                            <a href="#" class="btn_1">Subscribe</a>
+
+        {% set count = 0 %}
+        {% for an in aNews %}
+            {% if an.utilisateur.id == app.user.id %}
+            {% set count = count + 1 %}
+            {% endif %}
+        {% endfor %}
+        {% if count <= 0 %}
+
+            <!-- subscribe part here -->
+            <section class="subscribe_part section_padding">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <div class="subscribe_part_content">
+                                <form class="newsForm" action="{{ path('user_new_news') }}" method="post" id="newsForm"
+                                      novalidate="novalidate" name="form">
+                                    <h2>Restez informez !</h2>
+                                    <p id="h2out">Inscrivez vous dans notre newsletter pour etre au courant des nouvelles mises a jour et recevoir des promotions et des conseils directement dans votre boite mail </p>
+                                    <div class="subscribe_form">
+                                        <input type="email" id="email" class="email" placeholder="Votre e-mail" value="{{ app.user.email }}" >
+                                        <button type="submit" href="#" class="btn_1">S'inscrire</button>
+                                    </div>
+                                </form>
+                                <h2 class="contact-title" id="h2in">Reussie </h2>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-    <!-- subscribe part end -->
+            </section>
+            <!-- subscribe part end -->
+
+        {% endif %}
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+        <script>
+
+            $(function() {
+                $('#finish').hide();
+                $('#h2in').hide();
+            });
+            // handle request submit form
+
+            $(document).ready(function(){
+
+                (function($) {
+                    "use strict";
+
+                    // validate contactForm form
+                    $(function() {
+                        $('#newsForm').validate({
+                            rules: {
+                                email: {
+                                    required: true,
+                                }
+                            },
+                            messages: {
+                                email: {
+                                    required: "ne peut etre vide."
+                                }
+                            },
+                            submitHandler: function(form) {
+                                $(form).ajaxSubmit({
+                                    type:"POST",
+                                    data: $(form).serialize(),
+                                    url:"{{ path('user_new_news') }}",
+                                    success: function() {
+                                        $('#newsForm :input').attr('disabled', 'disabled');
+                                        $('#newsForm').fadeTo("slow", 1, function () {
+                                            $(this).find(':input').attr('disabled', 'disabled');
+                                            $(this).find('label').css('cursor', 'default');
+                                            swal("Succés", "Souscription a la newsletter reussie", "success");
+                                        })
+                                        $('#newsForm').fadeOut('low');
+                                        $('#h2out').fadeOut('low');
+                                        $('#h2in').fadeIn('low');
+                                    },
+                                    error: function() {
+                                        $('#newsForm').fadeTo( "slow", 1, function() {
+                                            swal("Echec", "Souscription a la newsletter echoué... réesayé", "error");
+
+                                        })
+                                    }
+                                })
+                            }
+                        })
+                    })
+
+                })(jQuery)
+            })
+        </script>
 
 {% endblock %}
 {% block authFooter %}{% endblock %}

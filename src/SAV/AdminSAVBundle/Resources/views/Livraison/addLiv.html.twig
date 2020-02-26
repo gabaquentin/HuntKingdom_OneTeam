@@ -55,7 +55,14 @@
         <label class="col-form-label col-md-3 col-sm-3  label-align">Date Livraison<span
                     class="required">*</span></label>
         <div class="col-md-6 col-sm-6">
-            {{ form_widget(form.dateliv, {'attr': {'class': 'form-control'}}) }}
+            <div class="form-group">
+                <div class='input-group date' id='myDatepicker2'>
+                    {{ form_widget(form.dateliv, {'attr': {'class': 'form-control','placeholder':'DD/MM/YYYY'}}) }}
+                    <span class="input-group-addon">
+                               <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                </div>
+            </div>
         </div>
     </div>
     <br></br>
@@ -82,7 +89,48 @@
             </div>
         </div>
     </div>
+    </div>
+    </div>
 {{ form_end (form) }}
-    </div>
-    </div>
+    <!-- bootstrap-daterangepicker -->
+    <script src="{{ asset('admin/vendors/moment/min/moment.min.js') }}"></script>
+    <script src="{{ asset('admin/vendors/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
+    <!-- bootstrap-datetimepicker -->
+    <script src="{{ asset('admin/vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}"></script>
+    <!-- Ion.RangeSlider -->
+    <script src="{{ asset('admin/vendors/ion.rangeSlider/js/ion.rangeSlider.min.js') }}"></script>
+
+    <script  type="text/javascript">
+        $(function () {
+            $('#myDatepicker').datetimepicker();
+        });
+
+        $('#myDatepicker2').datetimepicker({
+            format: 'DD/MM/YYYY'
+        });
+
+        $('#myDatepicker3').datetimepicker({
+            format: 'hh:mm A'
+        });
+
+        $('#myDatepicker4').datetimepicker({
+            ignoreReadonly: true,
+            allowInputToggle: true
+        });
+
+        $('#datetimepicker6').datetimepicker();
+
+        $('#datetimepicker7').datetimepicker({
+            useCurrent: false
+        });
+
+        $("#datetimepicker6").on("dp.change", function(e) {
+            $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
+        });
+
+        $("#datetimepicker7").on("dp.change", function(e) {
+            $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+        });
+    </script>
+
 {% endblock %}

@@ -22,9 +22,9 @@ class Livraison
     private $id;
 
     /**
-     * @var \DateTime
+     * @var string
      *
-     * @ORM\Column(name="dateliv", type="date")
+     * @ORM\Column(name="dateliv", type="string")
      */
     private $dateliv;
 
@@ -68,29 +68,6 @@ class Livraison
         return $this->id;
     }
 
-    /**
-     * Set dateliv
-     *
-     * @param \DateTime $dateliv
-     *
-     * @return Livraison
-     */
-    public function setDateliv($dateliv)
-    {
-        $this->dateliv = $dateliv;
-
-        return $this;
-    }
-
-    /**
-     * Get dateliv
-     *
-     * @return \DateTime
-     */
-    public function getDateliv()
-    {
-        return $this->dateliv;
-    }
 
     /**
      * Set prixliv
@@ -115,5 +92,24 @@ class Livraison
     {
         return $this->prixliv;
     }
+
+    /**
+     * Get dateliv
+     *
+     * @return string
+     */
+    public function getDateliv()
+    {
+        return $this->dateliv;
+    }
+
+    /**
+     * @param string $dateliv
+     */
+    public function setDateliv($dateliv)
+    {
+        $this->dateliv = $dateliv;
+    }
+
 }
 

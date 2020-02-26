@@ -13,6 +13,12 @@ user_contact:
 user_end_expedition:
     path:     /endExp/{id}
     defaults: { _controller: UserBundle:Default:endExp }
+user_new_news:
+    path:     /newNews
+    defaults: { _controller: UserBundle:Default:newNews }
+user_contact_process:
+    path:     /contactProcess
+    defaults: { _controller: UserBundle:Default:contactProcess }
 user_admin_homepage:
     path:     /admin
     defaults: { _controller: UserBundle:Default:indexAdmin }

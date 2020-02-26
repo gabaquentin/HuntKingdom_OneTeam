@@ -24,7 +24,7 @@
                     <h2 class="contact-title">Get in Touch</h2>
                 </div>
                 <div class="col-lg-8">
-                    <form class="form-contact contact_form" action="contact_process.php" method="post" id="contactForm"
+                    <form class="form-contact contact_form" action="{{ path('user_contact_process') }}" method="post" id="contactForm"
                           novalidate="novalidate">
                         <div class="row">
                             <div class="col-12">
@@ -55,9 +55,10 @@
                             </div>
                         </div>
                         <div class="form-group mt-3">
-                            <a href="#" class="btn_3 button-contactForm">Send Message</a>
+                            <button type="submit" class="btn_3 button-contactForm">Send Message</button>
                         </div>
                     </form>
+                    <P id="cache">Message envoyé avec succés </P>
                 </div>
                 <div class="col-lg-4">
                     <div class="media contact-info">
@@ -86,5 +87,103 @@
         </div>
     </section>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script>
+
+        $(function() {
+            $('#cache').hide();
+        });
+
+        $(document).ready(function(){
+
+            (function($) {
+                "use strict";
+
+
+                jQuery.validator.addMethod('answercheck', function (value, element) {
+                    return this.optional(element) || /^\bcat\b$/.test(value)
+                }, "type the correct answer -_-");
+
+                // validate contactForm form
+                $(function() {
+                    $('#contactForm').validate({
+                        rules: {
+                            name: {
+                                required: true,
+                                minlength: 2
+                            },
+                            subject: {
+                                required: true,
+                                minlength: 4
+                            },
+                            number: {
+                                required: true,
+                                minlength: 5
+                            },
+                            email: {
+                                required: true,
+                                email: true
+                            },
+                            message: {
+                                required: true,
+                                minlength: 20
+                            }
+                        },
+                        messages: {
+                            name: {
+                                required: "come on, you have a name, don't you?",
+                                minlength: "your name must consist of at least 2 characters"
+                            },
+                            subject: {
+                                required: "come on, you have a subject, don't you?",
+                                minlength: "your subject must consist of at least 4 characters"
+                            },
+                            number: {
+                                required: "come on, you have a number, don't you?",
+                                minlength: "your Number must consist of at least 5 characters"
+                            },
+                            email: {
+                                required: "no email, no message"
+                            },
+                            message: {
+                                required: "um...yea, you have to write something to send this form.",
+                                minlength: "thats all? really?"
+                            }
+                        },
+                        submitHandler: function(form) {
+                            $(form).ajaxSubmit({
+                                type:"POST",
+                                data: $(form).serialize(),
+                                url:"{{ path('user_contact_process') }}",
+                                success: function() {
+                                    $('#contactForm :input').attr('disabled', 'disabled');
+                                    $('#contactForm').fadeTo( "slow", 1, function() {
+                                        $(this).find(':input').attr('disabled', 'disabled');
+                                        $(this).find('label').css('cursor','default');
+                                        $('#success').fadeIn();
+                                        $('#contactForm').hide();
+                                        swal("Envoyé", "Votre message a été envoyé avec succés", "success");
+                                        $('#success').modal('show');
+                                    })
+                                },
+                                error: function() {
+                                    $('#contactForm').fadeTo( "slow", 1, function() {
+                                        $('#error').fadeIn();
+                                        swal("Non Envoyé", "Votre message n'a  pas été envoyé ... une erreur est survenu reesayé", "error");
+                                        $('#error').modal('show');
+                                    })
+                                }
+                            })
+                        }
+                    })
+                })
+
+            })(jQuery)
+        })
+
+    </script>
 {% endblock %}
 {% block authFooter %}{% endblock %}
