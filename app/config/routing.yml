@@ -1,3 +1,7 @@
+admin_event:
+    resource: "@adminEventBundle/Resources/config/routing.yml"
+    prefix:   /adminEvent
+
 admin_sav:
     resource: "@AdminSAVBundle/Resources/config/routing.yml"
     prefix:   /adminSav

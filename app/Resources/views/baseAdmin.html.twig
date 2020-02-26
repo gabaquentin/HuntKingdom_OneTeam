@@ -118,7 +118,7 @@
                             </li>
                             <li><a><i class="fa fa-calendar"></i> Evènements & Publicité <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a href="chartjs.html">Chart JS</a></li>
+                                    <li><a href="{{path('admin_event_homepage')}}">Evènements</a></li>
                                     <li><a href="chartjs2.html">Chart JS2</a></li>
                                     <li><a href="morisjs.html">Moris JS</a></li>
                                     <li><a href="echarts.html">ECharts</a></li>
@@ -246,12 +246,13 @@
         {% block addLiv %} {% endblock %}
         {% block list_liv %} {% endblock %}
         {% block admin_boutique_ajouter %} {% endblock %}
+
         {% block create_rec %}{% endblock %}
         {% block notif %} {% endblock %}
         {% block readrec %}{% endblock %}
         {% block search %}{% endblock %}
         {% block updaterec %}{% endblock %}
-
+        {% block admin_event %}{% endblock %}
 {% block footer %}
 
 {% endblock %}

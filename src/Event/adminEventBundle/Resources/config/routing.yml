@@ -1,0 +1,9 @@
+admin_event_homepage:
+    path:     /adminEvent
+    defaults: { _controller: adminEventBundle:Default:index }
+admin_event_supprimer:
+    path:     /supprimerEvent/{id}
+    defaults: { _controller: adminEventBundle:Default:supprimerEvent }
+admin_event_modifier:
+    path:     /modifierEvent/{id}
+    defaults: { _controller: adminEventBundle:Default:modifierEvent }

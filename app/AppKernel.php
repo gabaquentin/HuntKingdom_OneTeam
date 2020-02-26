@@ -28,6 +28,9 @@ class AppKernel extends Kernel
             new CMEN\GoogleChartsBundle\CMENGoogleChartsBundle(),
             new SAV\SAVBundle\SAVBundle(),
             new SAV\AdminSAVBundle\AdminSAVBundle(),
+            new Event\adminEventBundle\adminEventBundle(),
+            new Nomaya\SocialBundle\NomayaSocialBundle(),
+
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
