@@ -14,6 +14,9 @@
         "files": [ "vendor/symfony/symfony/src/Symfony/Component/VarDumper/Resources/functions/dump.php" ]
     },
     "require": {
+
+       
+
         "php": ">=7.3.12",
         "ext-json": "*",
         "cmen/google-charts-bundle": "^3.2",
@@ -55,6 +58,9 @@
     },
     "config": {
         "platform": {
+
+           
+
             "php": "7.3.12"
         },
         "sort-packages": true

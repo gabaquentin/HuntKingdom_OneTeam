@@ -95,6 +95,8 @@ fos_user:
             from_email:
                 address:        huntKingdom216@gmail.com
                 sender_name:    HuntKingdom
+
+            template:   email/password_resetting.email.twig
             template:   email/password_resetting.email.twig
 nomaya_social:
     buttons:
