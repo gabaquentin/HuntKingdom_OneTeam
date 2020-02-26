@@ -3,13 +3,14 @@
 namespace Boutique\BoutiqueBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use AdminBoutiqueBundle\Entity\Produits;
 
 class DefaultController extends Controller
 {
     public function indexAction()
     {
         $em=$this->getDoctrine()->getManager();
-        $produits=$em->getRepository("BoutiqueBundle:produits")->findAll();
+        $produits=$em->getRepository("AdminBoutiqueBundle:Produits")->findAll();
 
 
 
@@ -18,7 +19,7 @@ class DefaultController extends Controller
     public function ProductDetailAction($id)
     {
         $em=$this->getDoctrine()->getManager();
-        $produits=$em->getRepository("BoutiqueBundle:produits")->find($id);
+        $produits=$em->getRepository("AdminBoutiqueBundle:Produits")->find($id);
 
 
 

@@ -1,6 +1,6 @@
 admin_sav:
     resource: "@AdminSAVBundle/Resources/config/routing.yml"
-    prefix:   /sav
+    prefix:   /adminSav
 
 sav:
     resource: "@SAVBundle/Resources/config/routing.yml"

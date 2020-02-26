@@ -40,8 +40,6 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/monolog/monolog" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/nexmo/client" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/nexmo/client-core" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/ocramius/package-versions" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/ocramius/proxy-manager" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/paragonie/random_compat" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/php-http/guzzle6-adapter" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/php-http/httplug" />
@@ -87,7 +85,6 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/symfony" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/twig/twig" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/webimpress/safe-writer" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/zendframework/zend-diactoros" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
