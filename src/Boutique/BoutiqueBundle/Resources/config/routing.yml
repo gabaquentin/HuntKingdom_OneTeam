@@ -1,6 +1,15 @@
 boutique_homepage:
     path:     /
     defaults: { _controller: BoutiqueBundle:Default:index }
+boutique_animal:
+    path:     /BoutiqueAnimal
+    defaults: { _controller: BoutiqueBundle:Default:animal }
+boutique_peche:
+    path:     /BoutiquePeche
+    defaults: { _controller: BoutiqueBundle:Default:peche }
+boutique_pecheSS:
+    path:     /BoutiquePecheS
+    defaults: { _controller: BoutiqueBundle:Default:pecheSS }
 boutique_ProductDetail:
     path:     /ProductDetail/{id}
     defaults: { _controller: BoutiqueBundle:Default:ProductDetail }

@@ -57,19 +57,17 @@
 
                     <div class="product_list">
                         <div class="row">{% for p in produits %}
-                                {% if p.categorie=='chasse au fusil' %}
-                            <div class="col-lg-6 col-sm-6">
-                                <div class="single_product_item">
+                                {% if p.categorie=='peche SS' %}
+                                    <div class="col-lg-6 col-sm-6">
+                                        <div class="single_product_item">
 
-                                    <img src="{{asset('uploads/images/')}}{{p.image}}" alt="#" class="img-fluid">
-                                    <h3> <a href="{{path ('boutique_ProductDetail',{'id':p.id})}}">{{ p.nomProduit }}</a> </h3>
-                                    <p>{{ p.prix }} TND</p>
-                                    <div class="add_to_cart">
-                                        <a href="#" class="btn_3">Acheter</a>
-                                        <a href="#" class="btn_3"> Louer </a>
-                                    </div>
-
-
+                                            <img src="{{asset('uploads/images/')}}{{p.image}}" alt="#" class="img-fluid">
+                                            <h3> <a href="{{path ('boutique_ProductDetail',{'id':p.id})}}">{{ p.nomProduit }}</a> </h3>
+                                            <p>{{ p.prix }} TND</p>
+                                            <div class="add_to_cart">
+                                                <a href="#" class="btn_3">Acheter</a>
+                                                <a href="#" class="btn_3"> Louer </a>
+                                            </div>
 
 
 
@@ -80,8 +78,10 @@
 
 
 
-                                </div>
-                            </div> {% endif %}{% endfor %}
+
+
+                                        </div>
+                                    </div> {% endif %}{% endfor %}
                         </div>
 
                     </div>
