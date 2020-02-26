@@ -1,0 +1,4 @@
+services:
+#    admin_event.example:
+#        class: Event\adminEventBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
