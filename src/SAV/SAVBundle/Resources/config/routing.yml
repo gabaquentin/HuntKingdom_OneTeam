@@ -1,3 +1,25 @@
 sav_homepage:
     path:     /
     defaults: { _controller: SAVBundle:Default:index }
+sav_create:
+    path:     /create
+    defaults: { _controller: SAVBundle:Reclamation:create }
+sav_read:
+    path:     /read
+    defaults: { _controller: SAVBundle:Reclamation:read }
+sav_update:
+    path:     /update/{id}
+    defaults: { _controller: SAVBundle:Reclamation:update }
+sav_delete:
+    path:     /delete/{id}
+    defaults: { _controller: SAVBundle:Reclamation:delete }
+sav_search:
+    path:     /search
+    defaults: { _controller: SAVBundle:Reclamation:search }
+sav_pdf:
+    path:     /pdf/{id}
+    defaults: { _controller: SAVBundle:Reclamation:pdf }
+sav_updateClient:
+    path:     /updateClient/{id}
+    defaults: { _controller: SAVBundle:Reclamation:updateClient }
+
