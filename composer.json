@@ -14,7 +14,7 @@
         "files": [ "vendor/symfony/symfony/src/Symfony/Component/VarDumper/Resources/functions/dump.php" ]
     },
     "require": {
-        "php": ">=7.4.0",
+        "php": ">=7.2.18",
         "ext-json": "*",
         "cmen/google-charts-bundle": "^3.2",
         "doctrine/doctrine-bundle": "^1.6",
@@ -54,7 +54,7 @@
     },
     "config": {
         "platform": {
-            "php": "7.4.0"
+            "php": "7.2.18"
         },
         "sort-packages": true
     },
