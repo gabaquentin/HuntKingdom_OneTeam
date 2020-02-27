@@ -8,6 +8,8 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('@AdminCart/Default/index.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $commande = $em->getRepository("CartBundle:Commande")->findAll();
+        return $this->render('@AdminCart/Default/index.html.twig',array('commande'=>$commande));
     }
 }

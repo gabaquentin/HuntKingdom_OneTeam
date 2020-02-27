@@ -84,6 +84,10 @@ class DefaultController extends Controller
             $val[] = $value->getProduit();
         }
 
+        foreach ($panier as $dell) {
+            $em->remove($dell);
+            $em->flush();
+        }
 
         return $this->redirectToRoute('user_homepage');
 

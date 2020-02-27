@@ -85,15 +85,7 @@
                             </li>
                             <li><a><i class="fa fa-credit-card"></i> Commandes <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a href="general_elements.html">General Elements</a></li>
-                                    <li><a href="media_gallery.html">Media Gallery</a></li>
-                                    <li><a href="typography.html">Typography</a></li>
-                                    <li><a href="icons.html">Icons</a></li>
-                                    <li><a href="glyphicons.html">Glyphicons</a></li>
-                                    <li><a href="widgets.html">Widgets</a></li>
-                                    <li><a href="invoice.html">Invoice</a></li>
-                                    <li><a href="inbox.html">Inbox</a></li>
-                                    <li><a href="calendar.html">Calendar</a></li>
+                                    <li><a href="{{ path('admin_cart_homepage') }}">Liste des commandes</a></li>
                                 </ul>
                             </li>
                             <li><a><i class="fa fa-comments"></i> Forum & Communauté <span class="fa fa-chevron-down"></span></a>
@@ -213,6 +205,7 @@
         {% block search %}{% endblock %}
         {% block updaterec %}{% endblock %}
         {% block admin_event %}{% endblock %}
+        {% block admin_commandes %}{% endblock %}
 {% block footer %}
 
 {% endblock %}

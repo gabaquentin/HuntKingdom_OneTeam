@@ -1,0 +1,3 @@
+admin_pub_homepage:
+    path:     /
+    defaults: { _controller: AdminPubBundle:Default:index }
