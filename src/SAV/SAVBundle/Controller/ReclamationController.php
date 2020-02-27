@@ -7,7 +7,6 @@ use SAV\SAVBundle\Form\ReclamationType;
 use SAV\SAVBundle\SAVBundle;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Knp\Component\Pager\Pagination\PaginationInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Knp\Bundle\SnappyBundle\KnpSnappyBundle;
 
@@ -41,18 +40,9 @@ class ReclamationController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $Reclamations=$em->getRepository('SAVBundle:Reclamation')->findAll();
-        /**
-         * @var $paginator |Knp|Component|Pager|Paginator
-         */
 
-        $paginator  = $this->get('knp_paginator');
-        $result = $paginator->paginate(
-            $Reclamations,
-            $request->query->getInt('page',1),
-            $request->query->getInt('limit',5)
-        );
 
-        return $this->render('@SAV/Reclamation/read.html.twig',array('Reclamations'=>$result));
+        return $this->render('@SAV/Reclamation/read.html.twig',array('Reclamations'=>$Reclamations));
     }
     ###################################################################
     public function updateAction(Request $request, $id)
@@ -91,15 +81,7 @@ class ReclamationController extends Controller
             $typeReclamation = $request->get('typeReclamation');
             $Reclamation = $em->getRepository('SAVBundle:Reclamation')->findBy(array('typeReclamation' => $typeReclamation));
         }
-        /**
-         * @var $paginator |Knp|Component|Pager|Paginator
-         */
 
-        $paginator  = $this->get('knp_paginator');
-        $result = $paginator->paginate(
-            $Reclamation,
-            $request->query->getInt('page',1),
-            $request->query->getInt('limit',5));
         return $this->render("@SAV/Reclamation/search.html.twig", array('Reclamation' => $Reclamation));
 
     }

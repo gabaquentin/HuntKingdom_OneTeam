@@ -35,10 +35,7 @@ class ReclamationType extends AbstractType
                 'expanded'=>false,
                 'label'=>'Etat Recalation:',])
             ->add('email',EmailType::class)
-            ->add('captcha',CaptchaType::class,array('width' => 200,
-                'height' => 50,
-                'length' => 6,
-            ))
+
 
         ;
     }

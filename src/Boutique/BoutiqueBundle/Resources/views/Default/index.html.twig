@@ -62,23 +62,15 @@
                                 <div class="single_product_item">
 
                                     <img src="{{asset('uploads/images/')}}{{p.image}}" alt="#" class="img-fluid">
-                                    <h3> <a href="{{path ('boutique_ProductDetail',{'id':p.id})}}">{{ p.nomProduit }}</a> </h3>
-                                    <p>{{ p.prix }} TND</p>
+                                    <h3> <a href="{{path ('boutique_ProductDetail',{'id':p.id})}}">{{ p.nomProduit }}</a> : {{ p.prix }} TND </h3>
                                     <div class="add_to_cart">
-                                        <a href="#" class="btn_3">Acheter</a>
-                                        <a href="#" class="btn_3"> Louer </a>
+                                        <form class="prodForm{{ p.id }}" action="{{ path('boutique_add_to_cart') }}" method="post" id="prodForm{{ p.id }}"
+                                              novalidate="novalidate" name="form">
+                                            <input type="text" id="idp" name="idp" value="{{ p.id }}" hidden>
+                                            <input type="text" id="quantite" name="quantite" value="1" hidden>
+                                            <button type="submit" href="#" class="btn_3">Ajouter au panier</button>
+                                        </form>
                                     </div>
-
-
-
-
-
-
-
-
-
-
-
 
                                 </div>
                             </div> {% endif %}{% endfor %}
@@ -198,6 +190,69 @@
     </footer>
     <!--::footer_part end::-->
 
+    {% for p in produits %}
+    {% if p.categorie=='chasse au fusil' %}
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+
+        $(function() {
+            $('#finish').hide();
+            $('#h2in').hide();
+        });
+        // handle request submit form
+
+        $(document).ready(function(){
+
+            (function($) {
+                "use strict";
+
+                // validate contactForm form
+                $(function() {
+                    $('#prodForm{{ p.id }}').validate({
+                        rules: {
+                            email: {
+                                required: true,
+                            }
+                        },
+                        messages: {
+                            email: {
+                                required: "ne peut etre vide."
+                            }
+                        },
+                        submitHandler: function(form) {
+                            $(form).ajaxSubmit({
+                                type:"POST",
+                                data: $(form).serialize(),
+                                url:"{{ path('boutique_add_to_cart') }}",
+                                success: function() {
+                                    $('#prodForm{{ p.id }} :input').attr('disabled', 'disabled');
+                                    $('#prodForm{{ p.id }}').fadeTo("slow", 1, function () {
+                                        $(this).find(':input').attr('disabled', 'disabled');
+                                        $(this).find('label').css('cursor', 'default');
+                                        swal("Succés", "{{ p.NomProduit }} Ajouté au panier", "success");
+                                    })
+                                    $('#prodForm{{ p.id }}').fadeOut('low');
+                                    $('#h2out').fadeOut('low');
+                                    $('#h2in').fadeIn('low');
+                                },
+                                error: function() {
+                                    $('#prodForm{{ p.id }}').fadeTo( "slow", 1, function() {
+                                        swal("Echec", "réesayé", "error");
+                                    })
+                                }
+                            })
+                        }
+                    })
+                })
+
+            })(jQuery)
+        })
+    </script>
+    {% endif %}
+    {% endfor %}
     <!-- jquery plugins here-->
     <script src="{{ asset ('js/jquery-1.12.1.min.js') }}"></script>
     <!-- popper js -->

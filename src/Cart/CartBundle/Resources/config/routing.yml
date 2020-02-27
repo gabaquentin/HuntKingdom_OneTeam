@@ -1,0 +1,12 @@
+cart_homepage:
+    path:     /
+    defaults: { _controller: CartBundle:Default:index }
+cart_update:
+    path:     /update
+    defaults: { _controller: CartBundle:Default:update }
+cart_dellI:
+    path:     /dellI/{id}
+    defaults: { _controller: CartBundle:Default:dellI }
+cart_add_commande:
+    path:     /addCommande/{pp}
+    defaults: { _controller: CartBundle:Default:addCommande }

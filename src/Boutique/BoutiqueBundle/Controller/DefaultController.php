@@ -2,8 +2,12 @@
 
 namespace Boutique\BoutiqueBundle\Controller;
 
+use Cart\CartBundle\Entity\Panier;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use AdminBoutiqueBundle\Entity\Produits;
+use AppBundle\Entity\User;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
@@ -57,6 +61,31 @@ class DefaultController extends Controller
         return $this->render("@Boutique/Default/ProductDetail.html.twig",array('produits'=>$produits));
     }
 
+    public function addToCartAction(Request $request)
+    {
+        if($request->isXMLHttpRequest()) {
+            $quantite = addslashes(trim($request->get('quantite')));
+            $idP = addslashes(trim($request->get('idp')));
+
+                $entityManager = $this->getDoctrine()->getManager();
+
+                $panier = new Panier();
+                $u = $entityManager->getRepository("AppBundle:User")->find($this->getUser());
+                $produit = $entityManager->getRepository("AdminBoutiqueBundle:Produits")->find($idP);
+                $panier->setProduit($produit);
+                $panier->setClient($u);
+                $panier->setQuantite($quantite);
+
+
+                // tell Doctrine you want to (eventually) save the Product (no queries yet)
+                $entityManager->persist($panier);
+
+                // actually executes the queries (i.e. the INSERT query)
+                $entityManager->flush();
+
+        }
+        return new Response('45');
+    }
 
 
 }

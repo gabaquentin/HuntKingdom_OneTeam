@@ -13,3 +13,6 @@ boutique_pecheSS:
 boutique_ProductDetail:
     path:     /ProductDetail/{id}
     defaults: { _controller: BoutiqueBundle:Default:ProductDetail }
+boutique_add_to_cart:
+    path:     /addToCart
+    defaults: { _controller: BoutiqueBundle:Default:addToCart }

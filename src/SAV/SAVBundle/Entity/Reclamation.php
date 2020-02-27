@@ -227,7 +227,7 @@ class Reclamation implements NotifiableInterface, \JsonSerializable
     public function notificationsOnCreate(NotificationBuilder $builder)
     {
         $Reclamation = new Reclamation();
-        $notification = new Notification();
+        $notification = new Notificationss();
         $notification
             ->setTitle('Reclamation Ajoutée')
             ->setDescription('Votre reclamation est envoyée , Merci')
@@ -242,7 +242,7 @@ class Reclamation implements NotifiableInterface, \JsonSerializable
     public function notificationsOnUpdate(NotificationBuilder $builder)
     {
         $Reclamation=new Reclamation();
-        $notification = new Notification();
+        $notification = new Notificationss();
         $notification
             ->setTitle('Réclamation traitée ')
             ->setDescription('Ta réclamation a été traitée.. nous vous appelerons ultérieurements')
@@ -257,7 +257,7 @@ class Reclamation implements NotifiableInterface, \JsonSerializable
 
     public function notificationsOnDelete(NotificationBuilder $builder)
     {   $Reclamation=new Reclamation();
-        $notification = new Notification();
+        $notification = new Notificationss();
         $notification->setTitle('**Reclamation rejetée**')
             ->setDescription('Vous avez dépassé les délais de réclamations , Désolé ')
             ->setRoute('sav_delete')

@@ -10,8 +10,6 @@ parameters:
     image_directory: '%kernel.project_dir%/web/uploads/images'
 
 framework:
-    templating:
-        engines: ['twig', 'php']
     #esi: ~
     translator: { fallbacks: ['%locale%'] }
     secret: '%secret%'
@@ -95,38 +93,9 @@ fos_user:
             from_email:
                 address:        huntKingdom216@gmail.com
                 sender_name:    HuntKingdom
-
             template:   email/password_resetting.email.twig
-            template:   email/password_resetting.email.twig
-nomaya_social:
-    buttons:
-        facebook:
-            url:            null
-            locale:         "fr_FR"
-            send:           false
-            width:          300
-            showFaces:      false
-            layout:         "button_count"
-        twitter:
-            url:            null
-            locale:         "fr"
-            message:        "Je veux partager ça avec vous"
-            text:           "Tweet"
-            via:            "L'Equipe cartedevisitevirtuelle.fr"
-            tag:            "ttot"
-        googleplus:
-            url:            null
-            locale :        "fr"
-            size :          "medium"
-            annotation :    "bubble"
-            width :         300
-        linkedin:
-            url:            null
-            locale:         "fr_FR"
-            counter:        "right"
-        pinterest:
-            url:            null
-    links:
-        facebook:           "http://www.facebook.com/yann.chauvel"
-        googleplus:         "https://plus.google.com/105931415830389032796"
-
+notifications:
+    app_id: 949785
+    app_key: a95048f515168ed67b6
+    app_secret: 688e8adfd3ba5d8c2c00
+    cluster: eu

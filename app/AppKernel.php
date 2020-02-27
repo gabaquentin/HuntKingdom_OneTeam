@@ -29,7 +29,9 @@ class AppKernel extends Kernel
             new SAV\SAVBundle\SAVBundle(),
             new SAV\AdminSAVBundle\AdminSAVBundle(),
             new Event\adminEventBundle\adminEventBundle(),
-            new Nomaya\SocialBundle\NomayaSocialBundle(),
+            new Cart\CartBundle\CartBundle(),
+            new Cart\AdminCartBundle\AdminCartBundle(),
+            new SBC\NotificationsBundle\NotificationsBundle(),
 
         ];
 

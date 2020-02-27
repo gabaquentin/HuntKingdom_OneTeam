@@ -1,6 +1,14 @@
 admin_event:
     resource: "@adminEventBundle/Resources/config/routing.yml"
-    prefix:   /adminEvent
+    prefix:   /adminCart
+
+admin_cart:
+    resource: "@AdminCartBundle/Resources/config/routing.yml"
+    prefix:   /adminCart
+
+cart:
+    resource: "@CartBundle/Resources/config/routing.yml"
+    prefix:   /cart
 
 admin_sav:
     resource: "@AdminSAVBundle/Resources/config/routing.yml"
