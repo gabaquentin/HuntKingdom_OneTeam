@@ -169,6 +169,7 @@
                                     $('#cartForm{{ p.id }}').fadeTo("slow", 1, function () {
                                         $(this).find(':input').attr('disabled', 'disabled');
                                         $(this).find('label').css('cursor', 'default');
+                                       // document.getElementById("cartForm{{ p.id }}").reset();
                                         swal("Succés", " mise a jour reussie", "success");
                                     })
                                     $('#cartForm{{ p.id }}').fadeOut('low');

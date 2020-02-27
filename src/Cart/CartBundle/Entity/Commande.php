@@ -22,11 +22,27 @@ class Commande
     private $id;
 
     /**
+     * @return int
+     */
+    public function getQuantite(): int
+    {
+        return $this->quantite;
+    }
+
+    /**
+     * @param int $quantite
+     */
+    public function setQuantite(int $quantite): void
+    {
+        $this->quantite = $quantite;
+    }
+
+    /**
      * @var int
      *
-     * @ORM\Column(name="prixtotal", type="integer")
+     * @ORM\Column(name="quantite", type="integer")
      */
-    private $prixtotal;
+    private $quantite;
 
     /**
      * @var string
@@ -101,30 +117,6 @@ class Commande
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set prixtotal.
-     *
-     * @param int $prixtotal
-     *
-     * @return Commande
-     */
-    public function setPrixtotal($prixtotal)
-    {
-        $this->prixtotal = $prixtotal;
-
-        return $this;
-    }
-
-    /**
-     * Get prixtotal.
-     *
-     * @return int
-     */
-    public function getPrixtotal()
-    {
-        return $this->prixtotal;
     }
 
     /**

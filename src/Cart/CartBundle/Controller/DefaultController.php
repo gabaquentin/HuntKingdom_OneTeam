@@ -59,21 +59,29 @@ class DefaultController extends Controller
 
     public function addCommandeAction($pp)
     {
-        $commande = new Commande();
         $em = $this->getDoctrine()->getManager();
         $u = $em->getRepository("AppBundle:User")->find($this->getUser());
         $panier= $em->getRepository("CartBundle:Panier")->findBy(['client'=>$u]);
+        $val =[];
+        $stat = 0;
 
         foreach ($panier as $value) {
-            $commande->setUtilisateur($u);
-            $commande->setEtat('en cours');
-            $commande->setDate(date("Y/m/d H:i"));
-            $commande->setDateCommande(strtotime("now"));
-            $commande->setProduit($value->getProduit());
-            $commande->setPrixtotal($pp);
-            $em->persist($commande);
-            $em->flush();
+            if(in_array($value->getProduit(),$val))
+            {
 
+            }
+            else {
+                $commande = new Commande();
+                $commande->setUtilisateur($u);
+                $commande->setEtat('en cours');
+                $commande->setDate(date("Y/m/d H:i"));
+                $commande->setDateCommande(strtotime("now"));
+                $commande->setProduit($value->getProduit());
+                $commande->setQuantite($value->getQuantite());
+                $em->persist($commande);
+                $em->flush();
+            }
+            $val[] = $value->getProduit();
         }
 
 
