@@ -108,6 +108,10 @@
                                     <li><a href="{{path('admin_sav_ListLivraison')}}">Liste de Livraison</a></li>
                                     <li><a href="{{path('admin_sav_addLivreur')}}">Ajouter Livreur</a></li>
                                     <li><a href="{{path('admin_sav_ListLivreur')}}">Liste de Livreur</a></li>
+                                    <li><a href="{{path('sav_read')}}">Liste ds reclamations</a></li>
+                                    <li><a href="{{path('sav_search')}}">recherche ds reclamations</a></li>
+
+
                                 </ul>
                             </li>
                             <li><a><i class="fa fa-medkit"></i>Service Prévention <span class="fa fa-chevron-down"></span></a>
@@ -119,10 +123,8 @@
                             <li><a><i class="fa fa-calendar"></i> Evènements & Publicité <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
                                     <li><a href="{{path('admin_event_homepage')}}">Evènements</a></li>
-                                    <li><a href="chartjs2.html">Chart JS2</a></li>
-                                    <li><a href="morisjs.html">Moris JS</a></li>
-                                    <li><a href="echarts.html">ECharts</a></li>
-                                    <li><a href="other_charts.html">Other Charts</a></li>
+                                    <li><a href="{{path('pub_homepage')}}">Publicite</a></li>
+
                                 </ul>
                             </li>
                         </ul>
@@ -246,7 +248,7 @@
         {% block addLiv %} {% endblock %}
         {% block list_liv %} {% endblock %}
         {% block admin_boutique_ajouter %} {% endblock %}
-
+        {% block admin_pub %}{% endblock %}
         {% block create_rec %}{% endblock %}
         {% block notif %} {% endblock %}
         {% block readrec %}{% endblock %}

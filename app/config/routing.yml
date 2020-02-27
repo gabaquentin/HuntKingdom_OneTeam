@@ -1,3 +1,15 @@
+admin_pub:
+    resource: "@AdminPubBundle/Resources/config/routing.yml"
+    prefix:   /adminPub
+
+pub:
+    resource: "@PubBundle/Resources/config/routing.yml"
+    prefix:   /Pub
+
+event:
+    resource: "@EventBundle/Resources/config/routing.yml"
+    prefix:   /event
+
 admin_event:
     resource: "@adminEventBundle/Resources/config/routing.yml"
     prefix:   /adminCart

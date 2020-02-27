@@ -1,0 +1,12 @@
+pub_homepage:
+    path:     /pub
+    defaults: { _controller: PubBundle:Default:index }
+pub_supprimer:
+    path:     /supprimerPub/{id}
+    defaults: { _controller: PubBundle:Default:supprimerPub }
+pub_modifier:
+    path:     /modifierPub/{id}
+    defaults: { _controller: PubBundle:Default:modifierPub }
+pdf:
+    path:     /pdf/{id}
+    defaults: { _controller: adminEventBundle:Default:pdf }

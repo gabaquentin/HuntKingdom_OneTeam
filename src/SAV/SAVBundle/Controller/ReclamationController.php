@@ -8,7 +8,6 @@ use SAV\SAVBundle\SAVBundle;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Knp\Bundle\SnappyBundle\KnpSnappyBundle;
 
 class ReclamationController extends Controller
 {

@@ -54,36 +54,27 @@
                                 <a class="nav-link" href="{{ path('user_about') }}">A propos</a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="blog.php" id="navbarDropdown_1"
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown_1"
                                    role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Boutique
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown_1">
                                     <a class="dropdown-item" href="{{ path('boutique_homepage') }}"> Catalogue Produits</a>
-
-
                                 </div>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="blog.php" id="navbarDropdown_3"
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown_3"
                                    role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Preventions
+                                    Pages
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
                                     <a class="dropdown-item" href="{{ path('emergency_expedition') }}">Expeditions</a>
-                                    <a class="dropdown-item" href="cart.php">shopping cart</a>
+                                    <a class="dropdown-item" href="{{ path('sav_create') }}">Sav</a>
                                 </div>
                             </li>
 
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="blog.php" id="navbarDropdown_2"
-                                   role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    blog
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
-                                    <a class="dropdown-item" href="blog.php"> blog</a>
-                                    <a class="dropdown-item" href="single-blog.php">Single blog</a>
-                                </div>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{path('event_homepage')}}">Evenements</a>
                             </li>
 
                             <li class="nav-item">
@@ -121,6 +112,7 @@
 {% block accueil %} {% endblock %}
 {% block profil %} {% endblock %}
 {% block about %} {% endblock %}
+{% block event %} {% endblock %}
 {% block contact %} {% endblock %}
 {% block emergency %} {% endblock %}
 {% block emergency_expedition %} {% endblock %}

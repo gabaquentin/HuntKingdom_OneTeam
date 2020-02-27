@@ -1,0 +1,4 @@
+services:
+#    pub.example:
+#        class: Pub\PubBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

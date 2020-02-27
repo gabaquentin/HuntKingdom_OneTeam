@@ -32,7 +32,9 @@ class AppKernel extends Kernel
             new Cart\CartBundle\CartBundle(),
             new Cart\AdminCartBundle\AdminCartBundle(),
             new SBC\NotificationsBundle\NotificationsBundle(),
-
+            new Event\EventBundle\EventBundle(),
+            new Pub\PubBundle\PubBundle(),
+            new Pub\AdminPubBundle\AdminPubBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
