@@ -1,3 +1,9 @@
 admin_cart_homepage:
     path:     /
     defaults: { _controller: AdminCartBundle:Default:index }
+admin_detail_commande:
+    path:     /detailCommande/{id}
+    defaults: { _controller: AdminCartBundle:Default:detailCommande }
+admin_traiter_commande:
+    path:     /traiterCommande/{id}
+    defaults: { _controller: AdminCartBundle:Default:traiterCommande }

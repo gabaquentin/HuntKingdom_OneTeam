@@ -1,0 +1,100 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block admin_detail_commande %}
+
+    <body class="nav-md">
+    <div class="right_col" role="main">
+
+        <div class="">
+            <div class="page-title">
+                <div class="title_left">
+                    <h3>Detail de la Commande : {{ id }} </h3>
+                </div>
+
+                <div class="title_right">
+                    <div class="col-md-5 col-sm-5  form-group pull-right top_search">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search for...">
+                            <span class="input-group-btn">
+                      <button class="btn btn-default" type="button">Go!</button>
+                    </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="row">
+                <div class="col-md-12 col-sm-12 ">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>
+                                <a href="{{ path('admin_cart_homepage') }}" class="btn btn-block">Retour</a>
+
+                            </h2>
+                            <ul class="nav navbar-right panel_toolbox">
+                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="#">Settings 1</a>
+                                        <a class="dropdown-item" href="#">Settings 2</a>
+                                    </div>
+                                </li>
+                                <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+
+                        {% set count = 1 %}
+                        {% for c in commande %}
+                        <div class="x_content">
+
+                            <div class="col-md-7 col-sm-7 ">
+
+                                <div class="product_gallery">
+                                    <a>
+                                        <img src="{{asset('uploads/images/')}}{{c.produit.image}}"  style="width:500px" />
+
+                                    </a>
+
+                                </div>
+                            </div>
+
+                            <div class="col-md-5 col-sm-5 " style="border:0px solid #e5e5e5;">
+
+                                <h3 class="prod_title"> <large>Produit {{ count }}  : {{c.produit.nomProduit}} </large></h3>
+                                <div class="product_price">
+                                    <p></p>
+                                    {{c.produit.description}}
+                                    <br>
+                                </div>
+
+
+
+                                <div class="">
+                                    <div class="product_price">
+                                        <h1 class="price">{{c.produit.prix}} DT</h1>
+                                        <span class="price-tax">Ex Tax: {{c.produit.prix}} DT</span>
+                                        <br>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                            {% set count = count+1 %}
+                        {% endfor %}
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+
+{% endblock %}

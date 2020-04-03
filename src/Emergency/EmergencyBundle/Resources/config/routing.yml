@@ -1,12 +1,18 @@
 emergency_homepage:
     path:     /
     defaults: { _controller: EmergencyBundle:Default:index }
+emergency_deskhomepage:
+    path:     /desk
+    defaults: { _controller: EmergencyBundle:Default:deskindex }
 emergency_add:
     path:     /add
     defaults: { _controller: EmergencyBundle:Default:add }
 emergency_expedition:
     path:     /Expedition
     defaults: { _controller: EmergencyBundle:Default:Expedition }
+emergency_deskexpedition:
+    path:     /deskExpedition
+    defaults: { _controller: EmergencyBundle:Default:deskExpedition }
 emergency_add_expedition:
     path:     /addExpedition
     defaults: { _controller: EmergencyBundle:Default:addExpedition }

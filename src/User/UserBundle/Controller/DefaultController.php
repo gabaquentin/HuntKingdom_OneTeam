@@ -17,7 +17,8 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $aNews = $em->getRepository("UserBundle:aNews")->findAll();
-        return $this->render('@User/Default/index.html.twig',array('aNews'=>$aNews));
+        $pub = $em->getRepository("PubBundle:pub")->findAll();
+        return $this->render('@User/Default/index.html.twig',array('aNews'=>$aNews,'pub'=>$pub));
     }
 
     public function indexAdminAction()

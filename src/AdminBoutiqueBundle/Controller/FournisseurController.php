@@ -107,8 +107,6 @@ class FournisseurController extends Controller
             $subject= $mail->getSujet();
             $object=$mail->getObjet();
 
-
-
             $username='huntkingdom216@gmail.com';
             $message= \Swift_Message::newInstance()
                 ->setSubject($subject)

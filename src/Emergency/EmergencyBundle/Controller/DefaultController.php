@@ -22,6 +22,13 @@ class DefaultController extends Controller
         return $this->render('@Emergency/Default/index.html.twig',array('expedition'=>$expedition));
     }
 
+    public function deskindexAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $expedition = $em->getRepository("EmergencyBundle:Expedition")->findAll();
+        return $this->render('@Emergency/Default/desk_index.html.twig',array('expedition'=>$expedition));
+    }
+
     public function addAction(Request $request)
     {
         if($request->isXMLHttpRequest()) {
@@ -111,6 +118,13 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
         $urgence = $em->getRepository("EmergencyBundle:Urgence")->findAll();
         return $this->render('@Emergency/Default/expedition.html.twig',array('urgence'=>$urgence));
+    }
+
+    public function deskExpeditionAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $urgence = $em->getRepository("EmergencyBundle:Urgence")->findAll();
+        return $this->render('@Emergency/Default/desk_exp.html.twig',array('urgence'=>$urgence));
     }
 
     public function addExpeditionAction(Request $request)

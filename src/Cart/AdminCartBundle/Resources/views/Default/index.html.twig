@@ -65,8 +65,8 @@
 
                                         {% set sorted = [] %}
                                         {% for row in commande %}
-                                            {% if not ((row.dateCommande) in sorted|keys) %}{% set sorted = sorted|merge({ (row.dateCommande) : [], }) %}{% endif %}
-                                            {% set sorted = sorted|merge({(row.dateCommande): (sorted[(row.dateCommande)]|merge([ row, ])|sort)}) %}
+                                            {% if not ((row.date) in sorted|keys) %}{% set sorted = sorted|merge({ (row.date) : [], }) %}{% endif %}
+                                            {% set sorted = sorted|merge({(row.date): (sorted[(row.date)]|merge([ row, ])|sort)}) %}
                                         {% endfor %}
                                         {% set total = 0 %}
                                         {% for nomP, values in sorted %}
@@ -83,7 +83,10 @@
                                                 <td>{{c.utilisateur.username}}</td>
                                                 <td>{{c.date}}</td>
                                                 <td>{{c.etat}}</td>
-                                                <td></td>
+                                                <td>
+                                                    <a href="{{ path('admin_detail_commande',{'id':c.dateCommande}) }}" class="btn btn-primary" >Detail</a>
+                                                    <a href="" class="btn btn-warning" >Traiter</a>
+                                                </td>
 
                                             </tr>
                                             {% set boucle = 1 %}
